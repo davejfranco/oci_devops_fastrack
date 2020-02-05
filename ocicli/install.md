@@ -45,7 +45,7 @@ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scrip
 
 2. Responder a preguntas.
 
-   <img src="/img/oci_setup_config_qa.jpg" alt="seup qa" style="zoom:50%;" />
+   <img src="/img/ocicli/oci_setup_config_qa.jpg" alt="seup qa" style="zoom:50%;" />
 
 3. Subir oci_api_key_public.pem al usuario en la consola de oci.
 
@@ -59,7 +59,7 @@ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scrip
 
    Deberiamos obtener esto:
 
-   ![output test](/img/ocicli/oci_stup_test.jpg)
+   ![output test](/img/ocicli/oci_setup_test.jpg)
 
    y si es asi pues... we are ready to rock and roll!!!
 
