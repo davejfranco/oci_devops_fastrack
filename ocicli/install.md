@@ -2,11 +2,6 @@
 
 ## Pasos 1. Instalar oci-cli
 
-### Requisitos
-
-- Python
-- 
-
 ## Instalación en Linux
 
 1. Abrir terminal
