@@ -41,5 +41,12 @@ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scrip
    oci setup config
    ```
 
-   
+   ![oci setup](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\oci_setup_config.jpg)
 
+2. Responder a preguntas.
+
+   <img src="C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\oci_setup_config_qa.jpg" alt="seup qa" style="zoom:50%;" />
+
+3. Subir oci_api_key_public.pem al usuario en la consola de oci.
+
+   ![api paste](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\api_key_on_oci.jpg)
