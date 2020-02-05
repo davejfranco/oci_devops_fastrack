@@ -41,7 +41,7 @@ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scrip
    oci setup config
    ```
 
-   ![oci setup](/img/oci_setup_config.jpg)
+   ![oci setup](/img/ocicli/oci_setup_config.jpg)
 
 2. Responder a preguntas.
 
@@ -49,4 +49,18 @@ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scrip
 
 3. Subir oci_api_key_public.pem al usuario en la consola de oci.
 
-   ![api paste](/img/api_key_on_oci.jpg)
+   ![api paste](/img/ocicli/api_key_on_oci.jpg)
+
+4. Probamos el funcionamiento de oci-cli
+
+   ```powershell
+   oci iam availability-domain list
+   ```
+
+   Deberiamos obtener esto:
+
+   ![output test](/img/ocicli/oci_stup_test.jpg)
+
+   y si es asi pues... we are ready to rock and roll!!!
+
+   
