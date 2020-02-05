@@ -1,4 +1,5 @@
-.terraform
-*.tfstate.*
-*.tfvars
+iac/terraform/.terraform/
+iac/terraform/terraform.tfstate.backup
+iac/terraform/*.tfvars
+iac/terraform/terraform.tfstate
 iac/packer/secret.json
