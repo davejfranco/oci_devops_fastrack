@@ -14,4 +14,4 @@ variable "compartment_id" {
 variable "vmImgID" { default = "ocid1.image.oc1.phx.aaaaaaaatrfqygi3lwy3xjqhfgqhxxoas73ewa2edg27pu3w62m2achojt7a"}
 
 variable "availability_domain" { default = "dvEY:PHX-AD-1"}
-variable "ssh_public_key" { default = "~/.ssh/id_rsa.pub" }
+variable "ssh_key_location" { default = "~/.ssh/id_rsa.pub" }

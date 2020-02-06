@@ -27,7 +27,7 @@ module "OKE" {
     vcn_id = module.Network.vcnID
     k8s_service_subnets = [module.Network.public_subnets_ids[0]]
     np_subnet_id = module.Network.public_subnets_ids[1]
-    np_ssh_public_key = file("C:\\Users\\djfranco\\.ssh\\id_rsa.pub")
+    np_ssh_public_key = file(var.ssh_key_location)
 }
 
 output "vnc" {
@@ -37,6 +37,11 @@ output "vnc" {
 output "subnets" {
   value = module.Network.public_subnets_ids
 }
+
+output "k8sid" {
+  value = module.OKE.k8s_ocid
+}
+
 
 
 
