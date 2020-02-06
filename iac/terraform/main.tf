@@ -1,10 +1,15 @@
-provider "oci" {
+/* provider "oci" {
     tenancy_ocid = var.tenancy_ocid
     user_ocid = var.user_ocid
     fingerprint = var.fingerprint
     private_key_path = var.private_key_path
     region = var.region
+} */
+provider "oci" {
+  region = var.region
+  
 }
+
 
 data "oci_containerengine_cluster_option" "k8s_latest" {
     #Required
@@ -12,10 +17,10 @@ data "oci_containerengine_cluster_option" "k8s_latest" {
 }
 
 
-module "Network" {
+/* module "Network" {
     source = "./modules/network"
     
-    compartment_id = var.compartment_id
+    compartment_id = var.compartment_idS
     vcn_display_name = "devops_fasttrack_vcn"
 }
 
@@ -28,19 +33,8 @@ module "OKE" {
     k8s_service_subnets = [module.Network.public_subnets_ids[0]]
     np_subnet_id = module.Network.public_subnets_ids[1]
     np_ssh_public_key = file(var.ssh_key_location)
-}
+} */
 
-output "vnc" {
-  value = module.Network.vcnID
-}
-
-output "subnets" {
-  value = module.Network.public_subnets_ids
-}
-
-output "k8sid" {
-  value = module.OKE.k8s_ocid
-}
 
 
 
