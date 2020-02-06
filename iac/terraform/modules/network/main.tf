@@ -50,7 +50,7 @@ resource "oci_core_subnet" "pub_subnets" {
     #Required
     cidr_block = element(var.pub_nets_cidr, count.index)
     compartment_id = var.compartment_id
-    security_list_ids = ["${oci_core_vcn.vcn.default_security_list_id}"]
+    security_list_ids = [oci_core_vcn.vcn.default_security_list_id]
     vcn_id = oci_core_vcn.vcn.id
 
     #Optional
@@ -78,7 +78,7 @@ resource "oci_core_route_table" "priv_route_table" {
         #Optional
         destination = "0.0.0.0/0"
     }
-    vcn_id = "${oci_core_vcn.vcn.id}"
+    vcn_id = oci_core_vcn.vcn.id
 
     #Optional
     display_name = "Private Route Table"
@@ -89,7 +89,7 @@ resource "oci_core_subnet" "priv_subnets" {
     #Required
     cidr_block = element(var.priv_nets_cidr, count.index)
     compartment_id = var.compartment_id
-    security_list_ids = ["${oci_core_vcn.vcn.default_security_list_id}"]
+    security_list_ids = [oci_core_vcn.vcn.default_security_list_id]
     vcn_id = oci_core_vcn.vcn.id
 
     #Optional
