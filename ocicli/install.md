@@ -1,4 +1,6 @@
-#
+# Oracle Command Line Interface Tool 
+
+El cli es una herramienta de linea de comando que provee las mismas funcionalidades que la consola más algunas otras adicionales como crear script para extender y automatizar las capacidad de OCI.
 
 ## Pasos 1. Instalar oci-cli
 
