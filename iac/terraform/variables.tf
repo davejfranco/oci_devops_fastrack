@@ -1,8 +1,8 @@
 
-variable "tenancy_ocid" {}
-variable "user_ocid" {}
-variable "fingerprint" {}
-variable "private_key_path" {}
+# variable "tenancy_ocid" {}
+# variable "user_ocid" {}
+# variable "fingerprint" {}
+# variable "private_key_path" {}
 #Global
 variable "region" { default = "us-phoenix-1" }
 
@@ -14,7 +14,7 @@ variable "compartment_id" {
 variable "vmImgID" { default = "ocid1.image.oc1.phx.aaaaaaaatrfqygi3lwy3xjqhfgqhxxoas73ewa2edg27pu3w62m2achojt7a"}
 
 variable "availability_domain" { default = "dvEY:PHX-AD-1"}
-variable "ssh_key_location" { default = "~/.ssh/id_rsa.pub" }
+variable "ssh_key_location" { default = "id_rsa.pub" }
 
 #Network
 variable "vcn_cidr_block" { default = "192.168.1.0/24"}
