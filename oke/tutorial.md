@@ -41,7 +41,7 @@ Para accerder al registry en la consola, desde la esquina superior izquiera en l
 
 ![ocir home](/img/oke/registry_home.jpg)
 
-Lo primero que vamos hacer es hacer docker login para que luego podamos subir imagenes a nuestro registry; para eso lo primero que debemos hacer es un token de autentication. Debemos ir a la configuración de usuarios en la parte superior derecha y luego en el dashboard buscar en la sección de "Resources" buscar la opción "Auth Token".
+Lo primero que vamos hacer es hacer docker login para que luego podamos subir imagenes a nuestro registry; para eso lo primero que debemos hacer es generar un token de autentication. Debemos ir a la configuración de usuarios en la parte superior derecha y luego en el dashboard buscar en la sección de "Resources" buscar la opción "Auth Token".
 
 ![user settings](/img/oke/user_settings.jpg)
 
@@ -49,7 +49,7 @@ Lo primero que vamos hacer es hacer docker login para que luego podamos subir im
 
 Hacer click en "Generate Token" y debemos copiar el token y que no podremos ver mas adelante.
 
-Ahora para hacer login va depender en que región nos encontramos y aca podemos ver los distintas Region Key en todas las regiones de OCI https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm. Adicionalmente el usuarios usar tiene el formato <nombre del tenancy>/<usuario oci> y el password es el token que hemos generado anteriormente.
+Ahora para hacer login va depender en que región nos encontramos, acá podemos ver los distintas "Region Key" en todas las regiones de OCI https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm. Adicionalmente el usuarios usar tiene el formato ```<nombre del tenancy>/<usuario oci>``` y el password es el token que hemos generado anteriormente.
 
 Un ejemplo de login seria el seguiente:
 
@@ -57,7 +57,7 @@ Un ejemplo de login seria el seguiente:
 docker login iad.ocir.io -u davejfranco/dave.franco@oracle.com
 ```
 
-Ahora para subir imagenes nuestros repositorios debe ser taggeados de la siquiente forma "<region>.ocir.io/<nombre del tenant>/<nombre del repositorio>" 
+Ahora para subir imagenes nuestros repositorios debe ser taggeados de la siquiente forma ```<region>.ocir.io/<nombre del tenant>/<nombre del repositorio>``` 
 
 Ejemplo:
 
