@@ -3,3 +3,6 @@ iac/terraform/terraform.tfstate.backup
 iac/terraform/*.tfvars
 iac/terraform/terraform.tfstate
 iac/packer/secret.json
+iac/terraform/id_rsa.pub
+resourcemanager/*.zip
+resourcemanager/*.txt
