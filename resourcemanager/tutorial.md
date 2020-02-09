@@ -7,7 +7,7 @@ Oracle Resource Manager es un servicio de Oracle Cloud Infrastructure que permit
 
 Cuando estamos usando Resource Manager el flujo de tareas que podemos hacer esta representado en la siguiente imagen
 
-![rm](/img/resourcemanager/create_stack_output.jpg)
+![rm](/img/resourcemanager/resource_manager_workflow.jpg)
 
 ## Pasos 1. Crear el stack
 
