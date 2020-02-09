@@ -52,7 +52,7 @@ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scrip
    ![tenancy](/img/ocicli/tenancy_settings.jpg)
 
    - Luego se nos preguntará cual sera nuestra región default, acá podemos utilizar us-ashburn-1.
-- Nos preguntara si queremos generar nuevo par de llaves RSA y debemos decir que si con la letra Y.
+   - Nos preguntara si queremos generar nuevo par de llaves RSA y debemos decir que si con la letra Y.
    - Nos indicara el directorio default, nombre de las llaves y frase; a todo esto le podemos dar enter para tomar los valores default
 
   ### Listo Tenemos nuestro confi generado.
@@ -78,6 +78,7 @@ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scrip
 
    ![output test](/img/ocicli/oci_setup_test.jpg)
 
-   y si es asi pues... we are ready to rock and roll!!!
+   ### y si es asi pues... we are ready to rock and roll!!!
 
    
+
