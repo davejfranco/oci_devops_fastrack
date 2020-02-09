@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  selector:
+    matchLabels:
+      app: webserver
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+      - name: webserver    
+        image: iad.ocir.io/davejfranco/nginx
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: ocisecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  annotations:
+    service.beta.kubernetes.io/oci-load-balancer-shape: 100Mbps
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: webserver
