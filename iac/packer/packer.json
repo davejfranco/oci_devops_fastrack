@@ -3,7 +3,7 @@
         {   "availability_domain": "{{user `ad`}}",
             "base_image_ocid": "{{user `base_image_ocid`}}",
             "compartment_ocid": "{{user `compartment_ocid`}}",
-            "image_name": "vm_base-v1.0",
+            "image_name": "gitOps-v1.0",
             "shape": "VM.Standard2.1",
             "ssh_username": "opc",
             "subnet_ocid": "{{user `subnet_ocid`}}",
