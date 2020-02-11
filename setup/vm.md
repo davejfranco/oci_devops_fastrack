@@ -10,7 +10,7 @@ Lo primero es buscar el menú en la parte superior izquiera, hacemos click y en 
 
 Luego hacemos click en el botón de "Create Instance" y llenar los detalles.
 
-![serverName](/img/setup/\vm_name.jpg)
+![serverName](/img/setup/vm_name.jpg)
 
 En la sección de "Virtual cloud network compartment" nos aseguramos que estamos en el compartment donde hemos creado la vcn en el tutorial anterior.
 
