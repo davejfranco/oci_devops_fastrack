@@ -44,4 +44,4 @@ variable "ads" { default = ["dvEY:PHX-AD-1", "dvEY:PHX-AD-2", "dvEY:PHX-AD-3"] }
 variable "np_node_shape" { default = "VM.Standard2.1"}
 
 variable "nodes_per_net" { default = 1}
-variable "np_ssh_public_key" { default = "id_rsa.pub" }
+variable "np_ssh_public_key" { default = "~/.ssh/authorized_keys" }
