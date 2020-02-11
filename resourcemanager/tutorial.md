@@ -1,6 +1,8 @@
-# Oracle Resource Manager
+# Desplegando Infraestructura como código - Oracle Resource Manager
 
-Oracle Resource Manager es un servicio de Oracle Cloud Infrastructure que permite automatizar el proceso de creación de recursos en OCI. Haciendo Uso de Terraform, Resource Manager ayuda a instalar, configurar y manajar recursos a través del concepto "Infraestructura como código"
+Cuando deseamos desplegar infraestructuras más complejas, que poseen muchos recursos que dependen entre si es necesario hacer uso de una herramienta mucho más robusta. Para este tutorial haremos uso de Terraform que nos permite precisamente esto mediante el uso de una lenguaje sencillo conocido como HCL (Hashicorp Configuration Language) describir nuestra arquitectura.
+
+Para desplegar nuestro codigo Terraform vamos a usar Resource Manager que es una solución de OCI para desde un sitio centralizado poder desplegar sin tener que usar un servidor especifico para esta tarea o desde una pc local.
 
 
 ## Resource Manager Workflow
