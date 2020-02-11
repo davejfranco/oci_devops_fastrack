@@ -45,15 +45,15 @@ Lo primero que haremos es renombrar el archivo secret.json.template a secret.jso
 
 Lo primero que buscaremos es el "comparment_id"; esto lo encontramos si desplegamos el menú de la parte superior izquierda y seguidamente nos vamos a "Identity" -> "Compartments" hacemos click y veremos un unico comparment si es que no tenemos mas y sobre la columna OCID nos posicionamos para copiar el id que pegaremos en el secret.json
 
-![compartment_menu](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\iac\comparment_menu.jpg)
+![compartment_menu](/img/iac/comparment_menu.jpg)
 
 Luego desplegamos el mismo menu pero esta vez nos vamos a la opcion de "Networking" y hacemos clic en "Virtual Cloud Networks". Si ya tenemos una red creada la podremos ver, hacemos click sobre ella y navegamos para ver nuestras subnets. Alli debemos anotar el "AD" que se encuentra en la columna "Subnet Access" de la red que queremos usar, debe ser pública nuestra red. EJ: "dvEY:PHX-AD-1".
 
-![AD](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\iac\subnet_info.jpg)
+![AD](/img/iac/subnet_info.jpg)
 
  Luego hacemos click en el nombre de la subnet para consguier el OCID que necesitamos pegar en nuestro secret.
 
-![subnetid](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\iac\subnet_detail.jpg)
+![subnetid](/img/iac/subnet_detail.jpg)
 
 Seguidamente necesitamos el "base_image_ocid", si esas en ashburn usa "ocid1.image.oc1.iad.aaaaaaaawufnve5jxze4xf7orejupw5iq3pms6cuadzjc7klojix6vmk42va" y si tu region es phoenix "ocid1.image.oc1.phx.aaaaaaaadjnj3da72bztpxinmqpih62c2woscbp6l3wjn36by2cvmdhjub6a"
 
@@ -91,12 +91,12 @@ packer build -var-file=secret.json packer.json
 packer build -var-file=".\secret.json" .\packer.json
 ```
 
-![packer validate build](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\iac\packer_validate_and_build.jpg)
+![packer validate build](/img/iac/packer_validate_and_build.jpg)
 
 Esto puede tomar unos minutos mientras crear, ejecuta el script de instalación, crear la imagen y luego eliminar la VM temporal. El resultado si todo sale bien es.
 
-![build success](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\iac\packer_build_complete.jpg)
+![build success](/img/iac/packer_build_complete.jpg)
 
 y podemos ver nuestra imagen creada.
 
-![vmready](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\iac\vm_image_created.jpg)
+![vmready](/img/iac/vm_image_created.jpg)
