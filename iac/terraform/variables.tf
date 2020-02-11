@@ -14,7 +14,7 @@ variable "compartment_id" {
 variable "vmImgID" { default = "ocid1.image.oc1.phx.aaaaaaaatrfqygi3lwy3xjqhfgqhxxoas73ewa2edg27pu3w62m2achojt7a"}
 
 variable "availability_domain" { default = "dvEY:PHX-AD-1"}
-variable "ssh_key_location" { default = "id_rsa.pub" }
+#variable "ssh_key_location" { default = "~/.ssh/authorized_keys" }
 
 #Network
 variable "vcn_cidr_block" { default = "192.168.1.0/24"}
@@ -44,4 +44,4 @@ variable "ads" { default = ["dvEY:PHX-AD-1", "dvEY:PHX-AD-2", "dvEY:PHX-AD-3"] }
 variable "np_node_shape" { default = "VM.Standard2.1"}
 
 variable "nodes_per_net" { default = 1}
-variable "np_ssh_public_key" { default = "~/.ssh/authorized_keys" }
+#variable "np_ssh_public_key" { default = "~/.ssh/authorized_keys" }

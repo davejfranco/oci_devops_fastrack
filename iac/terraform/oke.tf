@@ -41,5 +41,5 @@ resource "oci_containerengine_node_pool" "demo_node_pool" {
     size = var.nodes_per_net
   }
     
-    ssh_public_key = file(var.ssh_key_location)
+    #ssh_public_key = file(var.ssh_key_location)
 }
