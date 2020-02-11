@@ -12,7 +12,7 @@ oci iam compartment list --all
 
 Anotamos el "id" de este compartment que sera usado luego.
 
-Luego necesitamos saber el OCI de la subnet donde desplegaremos nuestra VM; En la sección de "Instance information" de nuestra VM de ops hacemos click sobre el nombre de nuestra "Virtual Cloud Network"
+Luego necesitamos saber el OCID de la subnet donde desplegaremos nuestra VM; En la sección de "Instance information" de nuestra VM de ops hacemos click sobre el nombre de nuestra "Virtual Cloud Network"
 
 ![vmops](/img/ocicli/ops-vm-dashboard.jpg)
 
@@ -26,7 +26,7 @@ Luego vamos a necesitar el availabilty domain namede la region donde vamos a des
 oci iam availability-domain list
 ```
 
-![ad](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\ocicli\ads.jpg)
+![ad](/img/ocicli/ads.jpg)
 
 Debemos seleccionar un nombre de cualquier de los AD y tomar notas
 
@@ -48,11 +48,11 @@ Ahora podemos crear nuestra VM
 oci compute instance launch --image-id $imgid --shape "VM.Standard2.1" --availability-domain "dvEY:US-ASHBURN-AD-1" --subnet-id $sid --compartment-id $cid
 ```
 
-![newvm](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\ocicli\vmcreating.jpg)
+![newvm](/img/ocicli/vmcreating.jpg)
 
 Podemos ir al Menu de OCI --> Compute --> Instances y veremos nuestra VM creada.
 
-![uivm](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\ocicli\ui_new_vm.jpg)
+![uivm](/img/ocicli/ui_new_vm.jpg)
 
 ## 3. Destruyamos todo
 
@@ -64,7 +64,7 @@ oci compute instance terminate --instance-id $vmid
 
 Se nos preguntará si deseamos eliminar el recurso a lo que respodemos con "Y"
 
-![vmtermination](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\ocicli\vm_deletion.jpg)
+![vmtermination](/img/ocicli/vm_deletion.jpg)
 
 Ahora vamos con la red y para esto debemos primero borrar la subnet y luego vcn.
 
