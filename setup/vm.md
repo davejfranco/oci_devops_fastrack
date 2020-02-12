@@ -41,3 +41,13 @@ chmod +x setup.sh && ./setup.sh
 ```
 
 Estos nos instalará Docker y Kubectl.
+
+## 2. Descargar source code del workshop
+
+Una vez tengamos lista la vm nos descargamos el source code que vamos a estar utilizando para este workshop
+
+```shell
+git clone https://github.com/davejfranco/oci_devops_fastrack.git
+```
+
+y estamos listos para comenzar.
