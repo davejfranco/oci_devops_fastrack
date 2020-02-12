@@ -28,26 +28,26 @@ Una vez la vm este lista probamos hacer login.
 ssh -i <ssh location >/id_rsa.pub opc@<public ip>
 ```
 
-Desde otra ventana podemos copiar el script setup.sh o simplemente seleccionamos el contenido y lo copiamos en un archivo en nuestro servidor.
+Lo primero que debemos hacer una vez dentro de nuestro server es instalar git.
 
 ```shell
-scp -i <ssh location >/id_rsa.pub setup.sh opc@<public ip>:/home/opc/
+sudo yum install -y git
 ```
-
-Le damos permisos de ejecución y lo ejecutamos.
-
-```shell
-chmod +x setup.sh && ./setup.sh
-```
-
-Estos nos instalará Docker y Kubectl.
 
 ## 2. Descargar source code del workshop
 
-Una vez tengamos lista la vm nos descargamos el source code que vamos a estar utilizando para este workshop
+Ahora que tenemos git, vamos a descargarnos el workshop y para esto.
 
 ```shell
 git clone https://github.com/davejfranco/oci_devops_fastrack.git
 ```
+
+Nos movemos al directorio setup dentro del directorio del proyecto y vamos a instalar algunos pre-requisitos ejecutamos.
+
+```shell
+cd oci_devops_fastrack/setup && chmod +x setup.sh && ./setup.sh
+```
+
+Estos nos instalará Docker y Kubectl.
 
 y estamos listos para comenzar.
