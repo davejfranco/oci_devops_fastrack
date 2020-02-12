@@ -41,15 +41,15 @@ Para accerder al registry en la consola, desde la esquina superior izquiera en l
 
 ![ocir home](/img/oke/registry_home.jpg)
 
-Lo primero que vamos hacer es hacer docker login para que luego podamos subir imagenes a nuestro registry; para eso lo primero que debemos hacer es generar un token de autentication. Debemos ir a la configuración de usuarios en la parte superior derecha y luego en el dashboard buscar en la sección de "Resources" buscar la opción "Auth Token".
+Lo primero que vamos hacer es hacer docker login para que luego podamos subir imagenes a nuestro registry; para eso lo primero que debemos hacer es generar un token de autentication. Debemos ir a la configuración de usuarios en la parte superior derecha y luego en el dashboard debajo de la sección de "Resources" buscar la opción "Auth Token".
 
 ![user settings](/img/oke/user_settings.jpg)
 
 ![auth](/img/oke/auth_section.jpg)
 
-Hacer click en "Generate Token" y debemos copiar el token y que no podremos ver mas adelante.
+Hacer click en "Generate Token" y debemos copiar el token, luego de cerrado la ventana emergente no podremos verlo mas adelante.
 
-Ahora para hacer login va depender en que región nos encontramos, acá podemos ver los distintas "Region Key" en todas las regiones de OCI https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm. Adicionalmente el usuarios usar tiene el formato ```<nombre del tenancy>/<usuario oci>``` y el password es el token que hemos generado anteriormente.
+Ahora para hacer login va depender en que región que nos encontramos, acá podemos ver los distintas "Region Key" en todas las regiones de OCI https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm. Si estamos en ashburn nuestras region de login es iad.ocir.io, el usuario de nuestro registry depende del nombre del tenant y nombre de usuario  ```<nombre del tenancy>/<usuario oci>``` . Finalmente el password es el token que hemos generado anteriormente.
 
 Un ejemplo de login seria el seguiente:
 
@@ -57,7 +57,7 @@ Un ejemplo de login seria el seguiente:
 docker login iad.ocir.io -u davejfranco/dave.franco@oracle.com
 ```
 
-Ahora para subir imagenes nuestros repositorios debe ser taggeados de la siquiente forma ```<region>.ocir.io/<nombre del tenant>/<nombre del repositorio>``` 
+Para subir imagenes al  registry debemos taggearlos de la siquiente forma ```<region>.ocir.io/<nombre del tenant>/<nombre del repositorio>``` 
 
 Ejemplo:
 
@@ -84,7 +84,7 @@ $ kubectl create secret docker-registry ocirsecret
 Ejemplo:
 
 ```shell
-kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='davejfranco/dave.franco@oracle.com' --docker-password='1AS>)HZj(ZQUfPcI}nGM' --docker-email='dave.franco@oracle.com'
+kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='davejfranco/dave.franco@oracle.com' --docker-password='1AS>)HZj(ZQUfrewI}nGM' --docker-email='dave.franco@oracle.com'
 ```
 
 ## 4. Desplegar app a nuestro OKE.
@@ -109,7 +109,7 @@ Luego lo subimos a nuestro registry
 docker push iad.ocir.io/<tenant name>/helidon-quickstart-se
 ```
 
-Una vez finalizado de subir la imagen, ahora vamos a crear nuestra app en kubernetes, lo que debemos hacer es editar el archivo kubernetes.yaml y en la sección de deployment cambiar el nombre de nuestra image por la que acabamos de subir.
+Una vez finalizado de subir la imagen, ahora vamos a crear nuestra app en kubernetes. Lo que debemos hacer es editar el archivo kubernetes.yaml dentro del directorio del proyecto que acabamos de clonar cambiar el nombre de nuestra image en la sección "image" en el recurso "Deployment" por la que acabamos de subir.
 
 ![helidon](/img/oke/helidonimage.jpg)
 
@@ -125,7 +125,7 @@ Para verificar el pod corriendo.
 kubectl get pods 
 ```
 
-y si quieremos ver nuestro servicio expuesto.
+y si queremos ver nuestro servicio expuesto para ver la IP de nuestro LoadBalancer.
 
 ```shell
 kubectl get services
