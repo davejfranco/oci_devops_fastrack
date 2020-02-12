@@ -62,14 +62,14 @@ Ahora para subir imagenes nuestros repositorios debe ser taggeados de la siquien
 Ejemplo:
 
 ```shell
-docker pull nginx && docker tag nginx iad.ocir.io/davejfranco/nginx
+docker pull nginx && docker tag nginx iad.ocir.io/<tenant name>/nginx
 ```
 
 Ahora podemos subirlo a nuestro registry, este comando automaticamente también creará el repositorio.
 
 ```
 
-docker push iad.ocir.io/davejfranco/nginx
+docker push iad.ocir.io/<tenant name>/nginx
 ```
 
 ##  3. Crear acceso del cluster al registry.
@@ -84,21 +84,50 @@ $ kubectl create secret docker-registry ocirsecret
 Ejemplo:
 
 ```shell
-kubectl create secret docker-registry ocisecret --docker-server=iad.ocir.io --docker-username='davejfranco/dave.franco@oracle.com' --docker-password='1AS>)HZj(ZQUfPcI}nGM' --docker-email='dave.franco@oracle.com'
+kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='davejfranco/dave.franco@oracle.com' --docker-password='1AS>)HZj(ZQUfPcI}nGM' --docker-email='dave.franco@oracle.com'
 ```
 
-## 4. Probar acceso al registry desde nuestro cluster
+## 4. Desplegar app a nuestro OKE.
 
-Para probarlo lo mejor es crear un recurso en nuestro cluster que haga uso de la imagen que subimos en pasos anteriores. En este mismo directorio vamos a crear un deployment con la imagen nginx que previamente subimos y un servicio tipo LoadBalancer para exponerlo a Internet.
+Vamos a desplegar nuestro microservicio basado en Helidon SE en nuestro cluster Kubernetes.
 
-![nginx](/img/oke/nginxyaml.jpg)
-
-Como pueden ver en la figura de arriba referenciamos en nuestro deployment que las credenciales de nuestro registry estan en el secret "ocisecret"
+Lo primero que vamos hacer es a clonar el siguiente proyecto.
 
 ```shell
-kubectl create -f nginx.yaml
+git clone https://github.com/davejfranco/helidon-quickstart-se.git
 ```
 
-Una vez creado vamos a poder ver nuestro pod corriendo sin problemas.
+Con el uso de docker vamos a compilar la image.
 
-![pods](/img/oke/getpods.jpg)
+```shell
+docker build -t iad.ocir.io/<tenant name>/helidon-quickstart-se .
+```
+
+Luego lo subimos a nuestro registry
+
+```
+docker push iad.ocir.io/<tenant name>/helidon-quickstart-se
+```
+
+Una vez finalizado de subir la imagen, ahora vamos a crear nuestra app en kubernetes, lo que debemos hacer es editar el archivo kubernetes.yaml y en la sección de deployment cambiar el nombre de nuestra image por la que acabamos de subir.
+
+![helidon](/img/oke/helidonimage.jpg)
+
+y finalmente creamos el recurso.
+
+```shell
+kubectl create -f kubernetes.yaml
+```
+
+Para verificar el pod corriendo.
+
+```shell
+kubectl get pods 
+```
+
+y si quieremos ver nuestro servicio expuesto.
+
+```shell
+kubectl get services
+```
+
