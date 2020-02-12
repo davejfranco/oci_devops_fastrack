@@ -7,7 +7,7 @@ sudo su <<Here
 yum update -y
 
 #Install Docker
-yum install -y docker-engine git
+yum install -y docker-engine
 
 #Enable docker
 systemctl enable docker && systemctl start docker
