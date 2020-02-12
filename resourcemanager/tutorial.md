@@ -22,7 +22,7 @@ Compress-Archive -Path {directorio de archivos terraform}\* -DestinationPath ".\
 Si estas en linux 
 
 ```shell
-zip -r stack.zip /{directorio del codigo}/* 
+zip -j stack.zip ../iac/terraform/
 ```
 
 Copiamos el compartment id en donde se creará el stack
