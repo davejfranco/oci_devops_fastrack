@@ -2,7 +2,7 @@
 
 La facilidad de la infraestructura cloud es que podemos tener recursos bajo demanda o "Just in Time" no solo para su creación sino destrucción. En el siguiente tutorial vamos a probarlo haciendo uso de oci-cli.
 
-## 1. Pre-Requisitos
+## 1. Compartment OCID
 
 Lo primero que haremos es identificar el OCID de nuestro compartment. Para ellos con ayuda de nuestro oci-cli veamos todos los compartments disponibles en nuestro tenant.
 
@@ -12,6 +12,8 @@ oci iam compartment list --all
 
 Anotamos el "id" de este compartment que sera usado luego.
 
+## 2. Subnet OCID.
+
 Luego necesitamos saber el OCID de la subnet donde desplegaremos nuestra VM; En la sección de "Instance information" de nuestra VM de ops hacemos click sobre el nombre de nuestra "Virtual Cloud Network"
 
 ![vmops](/img/ocicli/ops-vm-dashboard.jpg)
@@ -20,7 +22,9 @@ Esto nos llevara hasta la info de nuestra VCN, bajamos un poco y veremos nuestra
 
 ![subnetid](/img/ocicli/subnets.jpg)
 
-Luego vamos a necesitar el availabilty domain namede la region donde vamos a desplegar la vm.
+## 3. Availability Domains
+
+Luego vamos a necesitar el availabilty domain name de la region donde vamos a desplegar la vm.
 
 ```shell
 oci iam availability-domain list
@@ -30,7 +34,9 @@ oci iam availability-domain list
 
 Debemos seleccionar un nombre de cualquier de los AD y tomar notas
 
-Luego, visitamos https://docs.cloud.oracle.com/en-us/iaas/images/image/2fca4c99-1e9b-4a60-b41b-c73ee7ac36c1/ alli buscamos dependiendo de la region cual OCID debemos usar. En caso de ashburn el OCID es ocid1.image.oc1.iad.aaaaaaaasrjyeax4sznb3jxnamxrjpgiw2ked3isrmj6ktu44uso4mln7dua correspondiente a una Oracle Autonomous Linux 7.
+## 4. VM image OCID
+
+Necesitamos indicar el OCID de la imagen que usaremos para nuestra vm. Para esto, visitamos https://docs.cloud.oracle.com/en-us/iaas/images/image/2fca4c99-1e9b-4a60-b41b-c73ee7ac36c1/ alli buscamos dependiendo de la region cual OCID debemos usar. En caso de ashburn el OCID es ocid1.image.oc1.iad.aaaaaaaasrjyeax4sznb3jxnamxrjpgiw2ked3isrmj6ktu44uso4mln7dua correspondiente a una Oracle Autonomous Linux 7.
 
 Ejemplo:
 
@@ -40,7 +46,7 @@ sid="ocid1.compartment.oc1..aaaaaaaav6pdooaarurousblty4koterxpcyu3llelogqqueunda
 imgid="ocid1.compartment.oc1..aaaaaaaav6pdooaarurousblty4koterxdasdawdasderkjhouyuihasdoas"
 ```
 
-## 2. Crear una VM.
+## 5. Crear una VM.
 
 Ahora podemos crear nuestra VM
 
@@ -54,7 +60,7 @@ Podemos ir al Menu de OCI --> Compute --> Instances y veremos nuestra VM creada.
 
 ![uivm](/img/ocicli/ui_new_vm.jpg)
 
-## 3. Destruyamos todo
+## 6. Destruyamos todo
 
 Vamos primero a destruir la vm recien creada. Debemos copiar el OCID de nuestra VM.
 
