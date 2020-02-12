@@ -8,11 +8,11 @@ En cada directorio de este proyecto existe un tutorial y a continuación les des
 
 ### 1. Setup
 
-El primer paso es movernos al directorio "setup". Allí veremos con una cuenta de OCI crear una red básica, luego crear una VM en donde instalaremos oci-cli, docker y kubectl con un script; nuestro amiente de workshop.
+El primer paso es movernos al directorio "setup". Veremos dos archivos ordenados por número en el primero veremos en OCI como crear una red básica, luego explicamos como crear una VM en donde instalaremos todos los requerimientos para el workshop como git, docker y kubectl con un script que esta incluido.
 
 ### 2. OCI command line tool
 
-Seguidamente nos vamos al directorio "ocicli" donde veremos los pasos para instalar y configuar oci-cli tool, una herramienta de linea de comando para interactuar con los recursos de OCI y donde también veremos como a través de esta herramienta podemos crear o destruir recursos de manera rápida e instantánea.
+Seguidamente nos vamos al directorio "ocicli" y acá también hay dos arhivos ordenados númericamente donde veremos los pasos para instalar y configuar oci-cli tool, una herramienta de linea de comando para interactuar con los recursos de OCI y donde también veremos como a través de esta herramienta podemos crear o destruir recursos de manera rápida e instantánea.
 
 ### 3. Infraestructura como código
 
