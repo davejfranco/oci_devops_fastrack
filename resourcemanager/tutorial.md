@@ -1,19 +1,19 @@
 # Desplegando Infraestructura como código - Oracle Resource Manager
 
-Cuando deseamos desplegar infraestructuras más complejas, que poseen muchos recursos que dependen entre si es necesario hacer uso de una herramienta mucho más robusta. Para este tutorial haremos uso de Terraform que nos permite precisamente esto mediante el uso de una lenguaje sencillo conocido como HCL (Hashicorp Configuration Language) describir nuestra arquitectura.
+Cuando deseamos desplegar infraestructuras más complejas, que poseen muchos recursos que dependen entre si es necesario hacer uso de una herramienta mucho más robusta. Para este tutorial haremos uso de Terraform que nos permite precisamente esto mediante el uso de una lenguaje sencillo conocido como HCL (Hashicorp Configuration Language) para describir nuestra arquitectura.
 
-Para desplegar nuestro codigo Terraform vamos a usar Resource Manager que es una solución de OCI para desde un sitio centralizado poder desplegar sin tener que usar un servidor especifico para esta tarea o desde una pc local.
+Pero una cosas es el código y otra como lo desplegamos y es mala prácticamente que lo hagamos desde nuestra propia laptop por tanto es ideal un lugar centralizado que guarde un registro de los cambios y tareas ejecutadas con este código; para esto usaremos Resource Manager que es una solución de OCI que te permite precisamente centralizar los deployments de terraform y mantener un registro de cambios de ejecución.
 
 
 ## Resource Manager Workflow
 
-Cuando estamos usando Resource Manager el flujo de tareas que podemos hacer esta representado en la siguiente imagen
+Cuando estamos usando Resource Manager el flujo de tareas que podemos hacer esta representado en la siguiente imagen.
 
 ![rm](/img/resourcemanager/resource_manager_workflow.jpg)
 
 ## Pasos 1. Crear el stack
 
-Lo primero es comprimir los archivos tf en zip
+Lo primero es comprimir los archivos terraform con extención tf ubicados en el directorio ./iac/terraform en formato zip.
 
 Si estas en powershell
 ```powershell
@@ -33,7 +33,7 @@ oci iam compartment list --all #Listar todos los compartments en tu tenant
 Ahora vamos a crear el stack, como puedes ver más abajo el comando $cid representa el OCID del compartment donde vamos a crear el stack, adicionalmente añadimos un nombre al stack y la versión de terraform que vamos a usar que en este caso es 0.12.x.
 
 ```shell
-oci resource-manager stack create --compartment-id $cid --config-source stack.zip --display-name "DevOps Fasttrack Stack" --terraform-version "0.12.x"
+oci resource-manager stack create --compartment-id $cid --config-source stack.zip --display-name "Demo Stack" --terraform-version "0.12.x"
 ```
 
 Ejecutado el comando debemos tener el siguiente output en nuestra terminal, tomemos nota del "id"; este es nuestro stack-id para futuras operaciones.
@@ -79,7 +79,7 @@ En consola mientras esta en pending veremos esto.
 
 ![pending ui](/img/resourcemanager/apply_stack_output_pending.jpg)
 
-Nos toca esperar un poco mientras se crear nuestra Red, Cluster de Kubernetes y su nodo!!! just chill!
+Nos toca esperar un poco mientras se crear nuestra Red, Cluster de Kubernetes y su nodo!!!... just chill!
 
 Luego vamos de nuevo a la consola y veremos el resultado de nuestro apply. Ya tenemos nuestro cluster listo!
 
