@@ -62,7 +62,7 @@ Para subir imagenes al  registry debemos taggearlos de la siquiente forma ```<re
 Ejemplo:
 
 ```shell
-docker pull nginx && docker tag nginx iad.ocir.io/<tenant name>/nginx
+docker pull nginx && docker tag nginx iad.ocir.io/davejfranco/nginx
 ```
 
 Ahora podemos subirlo a nuestro registry, este comando automaticamente también creará el repositorio.
@@ -84,7 +84,7 @@ $ kubectl create secret docker-registry ocirsecret
 Ejemplo:
 
 ```shell
-kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='davejfranco/dave.franco@oracle.com' --docker-password='1AS>)HZj(ZQUfrewI}nGM' --docker-email='dave.franco@oracle.com'
+kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='davejfranco/dave.franco@oracle.com' --docker-password='1AS>)HZj(ZQUfPcI}nG_' --docker-email='dave.franco@oracle.com'
 ```
 
 ## 4. Desplegar app a nuestro OKE.
@@ -116,7 +116,7 @@ Una vez finalizado de subir la imagen, ahora vamos a crear nuestra app en kubern
 y finalmente creamos el recurso.
 
 ```shell
-kubectl create -f kubernetes.yaml
+kubectl create -f kubefile.yaml
 ```
 
 Para verificar el pod corriendo.
