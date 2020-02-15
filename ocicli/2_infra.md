@@ -32,18 +32,26 @@ oci iam availability-domain list
 
 ![ad](/img/ocicli/ads.jpg)
 
-Debemos seleccionar un nombre de cualquier de los AD y tomar notas
+Debemos seleccionar un nombre de cualquier de los AD y tomar notas; ejemplo "dvEY:US-ASHBURN-AD-1"
 
 ## 4. VM image OCID
 
-Necesitamos indicar el OCID de la imagen que usaremos para nuestra vm. Para esto, visitamos https://docs.cloud.oracle.com/en-us/iaas/images/image/2fca4c99-1e9b-4a60-b41b-c73ee7ac36c1/ alli buscamos dependiendo de la region cual OCID debemos usar. En caso de ashburn el OCID es ocid1.image.oc1.iad.aaaaaaaasrjyeax4sznb3jxnamxrjpgiw2ked3isrmj6ktu44uso4mln7dua correspondiente a una Oracle Autonomous Linux 7.
+Necesitamos indicar el OCID de la imagen que usaremos para nuestra vm. Para esto, visitamos https://docs.cloud.oracle.com/en-us/iaas/images/image/2fca4c99-1e9b-4a60-b41b-c73ee7ac36c1/, nos movemos a la sección "Image OCIDs"; alli buscamos dependiendo de la region cual OCID debemos usar. 
+
+![ocid site](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\ocicli\oracle_img_id_site.jpg)
+
+Acá vemos el OCID para la región de ashburn y phoenix
+
+![ashburnOCID](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\ocicli\oracle_img_id_ashburn.jpg)
+
+Copiamos el OCID de acuerdo a nuestra región; en este caso us-ashburn-1
 
 Ejemplo:
 
 ```shell
 cid="ocid1.compartment.oc1..aaaaaaaav6pdooaarurousblty4koterxpcyu3llelogqqueunopmii4j7wsd" \
 sid="ocid1.compartment.oc1..aaaaaaaav6pdooaarurousblty4koterxpcyu3llelogqqueundasdwewqeqd" \
-imgid="ocid1.compartment.oc1..aaaaaaaav6pdooaarurousblty4koterxdasdawdasderkjhouyuihasdoas"
+imgid="ocid1.image.oc1.iad.aaaaaaaasrjyeax4sznb3jxnamxrjpgiw2ked3isrmj6ktu44uso4mln7dua"
 ```
 
 ## 5. Crear una VM.
