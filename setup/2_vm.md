@@ -25,7 +25,7 @@ Seleccionamos nuestra llave ssh pública o la pegamos directamente y hacemos cli
 Una vez la vm este lista probamos hacer login.
 
 ```shell
-ssh -i <ssh location >/id_rsa.pub opc@<public ip>
+ssh -i <ssh location >/id_rsa opc@<public ip>
 ```
 
 Lo primero que debemos hacer una vez dentro de nuestro server es instalar git.
