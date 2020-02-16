@@ -31,7 +31,7 @@ resource "oci_containerengine_node_pool" "demo_node_pool" {
 
         dynamic "placement_configs" {
             iterator = ad
-            for_each = var.ads
+            for_each = data.oci_identity_availability_domains.ads.availability_domains.*.name
             content {
                 availability_domain = ad.value
                 subnet_id           = oci_core_subnet.pub_subnets[1].id
