@@ -17,7 +17,7 @@ Cuando estamos usando Resource Manager el flujo de tareas que podemos hacer esta
 
 Nos vamos a dirigir al directorio donde se encuentra nuestros archivos de terraform ubicados en el directorio iac/terraform dentro del proyecto. Allí vamos a ubicar el archivo variables.tf donde remplazaremos las variables acorde a nuestro tenant.
 
-![vtf](/img/resourcemanager/variablestf.jpg)
+![vtf](/img/iac/variablestf.jpg)
 
 - Lo primero es llenar el espacio entre comillas correspondiente a la region; si estas en Ashburn el valor es "us-ashburn-1".
 - Luego vamos a reemplazar la variable "compartment_id" donde tenemos que llenarlo con el OCID del compartment donde estamos desplegando nuestro recursos. Recuerda que en la consola si nos vamos al Menú --> Identity --> Comparments veremos la lista de compartments y encontraremos el OCID buscado.
