@@ -38,11 +38,11 @@ Debemos seleccionar un nombre de cualquier de los AD y tomar notas; ejemplo "dvE
 
 Necesitamos indicar el OCID de la imagen que usaremos para nuestra vm. Para esto, visitamos https://docs.cloud.oracle.com/en-us/iaas/images/image/2fca4c99-1e9b-4a60-b41b-c73ee7ac36c1/, nos movemos a la sección "Image OCIDs"; alli buscamos dependiendo de la region cual OCID debemos usar. 
 
-![ocid site](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\ocicli\oracle_img_id_site.jpg)
+![ocid site](/img/ocicli/oracle_img_id_site.jpg)
 
 Acá vemos el OCID para la región de ashburn y phoenix
 
-![ashburnOCID](C:\Users\djfranco\Documents\Oracle\DevAdvocate\workshop\DevOpsFastrack\source\oci_devops_fastrack\img\ocicli\oracle_img_id_ashburn.jpg)
+![ashburnOCID](/img/ocicli/oracle_img_id_ashburn.jpg)
 
 Copiamos el OCID de acuerdo a nuestra región; en este caso us-ashburn-1
 
