@@ -68,7 +68,7 @@ Podemos ir al Menu de OCI --> Compute --> Instances y veremos nuestra VM creada.
 
 ![uivm](/img/ocicli/ui_new_vm.jpg)
 
-## 6. Destruyamos todo
+## 6. Destruyamos la VM
 
 Vamos primero a destruir la vm recien creada. Debemos copiar el OCID de nuestra VM.
 
@@ -80,15 +80,4 @@ Se nos preguntará si deseamos eliminar el recurso a lo que respodemos con "Y"
 
 ![vmtermination](/img/ocicli/vm_deletion.jpg)
 
-Ahora vamos con la red y para esto debemos primero borrar la subnet y luego vcn.
-
-```shell
-oci network subnet delete --subnet-id $sid 
-```
-
-```shell
-oci network vcn delete --vcn-id $vcn
-```
-
-$sid representa el OCID de la subnet y $vcn el OCID de la red creada.
 
