@@ -4,17 +4,13 @@ El cli es una herramienta de linea de comando que provee las mismas funcionalida
 
 ## Pasos 1. Instalar oci-cli.
 
-Lo primero que debemos hacer es loggearnos via ssh en la VM que creamos en la sección de "setup"
-
-## Instalación en Linux
-
-Una vez dentro del terminal, ejecutamos el siguiente script.
+Lo primero que debemos hacer es loggearnos via ssh en la VM que creamos en la sección de "setup". Una vez dentro del terminal, ejecutamos el siguiente script.
 
 ```shell
 bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
 ```
 
-## Setup Inicial de oci-cli 
+## Paso 2. Setup Inicial de oci-cli 
 
 1. Ejecutar oci setup
 
