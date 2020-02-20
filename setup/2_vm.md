@@ -22,6 +22,8 @@ Asegurarse de seleccionar la red que sea tipo pública y seleccionar "Assign a p
 
 Seleccionamos nuestra llave ssh pública o la pegamos directamente y hacemos click en "Create".
 
+Nota: Si te descargas el proyecto dentro de la carpeta setup --> ssh encontrarás un par de llaves que puedes usar para tu vm del workshop.
+
 Una vez la vm este lista probamos hacer login.
 
 ```shell
