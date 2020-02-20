@@ -20,8 +20,15 @@ Nos vamos a dirigir al directorio donde se encuentra nuestros archivos de terraf
 ![vtf](/img/iac/variablestf.jpg)
 
 - Lo primero es llenar el espacio entre comillas correspondiente a la region; si estas en Ashburn el valor es "us-ashburn-1".
+
 - Luego vamos a reemplazar la variable "compartment_id" donde tenemos que llenarlo con el OCID del compartment donde estamos desplegando nuestro recursos. Recuerda que en la consola si nos vamos al Menú --> Identity --> Comparments veremos la lista de compartments y encontraremos el OCID buscado.
+
 - Por último tal y como hicimos en el tutorial de oci-cli necesitas el OCID de la imagen a utilizar para los nodos workers de nuestro cluster k8s. Recuerda que puedes visitar  https://docs.cloud.oracle.com/en-us/iaas/images/image/2fca4c99-1e9b-4a60-b41b-c73ee7ac36c1/ y obtener este valir según la región donde estas creando los recursos; usa este valor para reemplazar la variable "node_image_id".
+
+  Nota: 
+
+  - Si estas en us-ashburn-1 el OCID que debes usar en la variables "node_image_id" es ocid1.image.oc1.iad.aaaaaaaamspvs3amw74gzpux4tmn6gx4okfbe3lbf5ukeheed6va67usq7qq
+  - Si estas en us-phoenix-1 el OCID que debes usar en la variables "node_image_id" es ocid1.image.oc1.phx.aaaaaaaamff6sipozlita6555ypo5uyqo2udhjqwtrml2trogi6vnpgvet5q
 
 ## Pasos 2. Crear el stack
 
