@@ -3,10 +3,6 @@
 set -x
 
 sudo su <<Here
-#Update
-echo "Update OS"
-yum update -y
-
 #Install Docker
 
 echo "Install docker"
