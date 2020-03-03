@@ -1,30 +1,37 @@
 # DevOps Day Fasttrack
 
-Este proyecto tiene como propósito servir de workshop para el aprendizaje de conceptos básicos de la práctica de DevOps usando herramientas opensource sobre Oracle Cloud Infrastructure.
+This project aims to serve as a workshop material to learn basic concepts of DevOps practice using opensource tools on Oracle Cloud Infrastructure.
 
 ## Agenda
 
-En cada directorio de este proyecto existe un tutorial y a continuación les describo la secuencia de como seguirlo.
+This DevOps workshop will cover the following topics:
 
-### 1. Setup
+- Cloud Shell and Oracle Command Line Tool (oci-cli).
+- Oracle Resource Manager (Terraform deployment plattform).
+- Oracle Kubernetes Engine (OKE).
 
-El primer paso es movernos al directorio "setup". Veremos dos archivos ordenados por número en el primero veremos en OCI como crear una red básica, luego explicamos como crear una VM que será de donde ejecutaremos el workshop y donde instalaremos todos los requerimientos necesarios como git, docker y kubectl con un script que esta incluido.
+### Pre-requisite
 
-### 2. OCI command line tool
+In order to follow this workshop the first thing is to have an OCI account, if you don't have one you can visit https://www.oracle.com/cloud/free/ and follow the steps to complete the registration process. Once you have access to your account go to https://console.us-ashburn-1.oraclecloud.com/ where you'll be prompt to provide your the name of your tenant follow by your username and password.
 
-Una vez finalizado el setup, descargamos el proyecto en nuestra nueva VM y seguidamente nos vamos al directorio "ocicli" y acá también hay dos arhivos ordenados númericamente donde veremos los pasos para instalar y configuar oci-cli tool, una herramienta de linea de comando para interactuar con los recursos de OCI y donde también veremos como a través de esta herramienta podemos crear o destruir recursos de manera rápida e instantánea.
+
+### 1. OCI command line tool
+
+The "DevOps way" of doing stuff is using terminal, in this regard Oracle Cloud has two amazing tool; first is the cloud shell that allows you to have a shell on your browser with some usefull tools already installed to work on, the second one is de oci command line tool (oci-cli) which allow you to perform operation throught the terminal. In this step wil work with both to familiarize with OCI using the terminal, move to de "ocicli" directory where you can find the steps on this lab.
 
 ### 3. Infraestructura como código
 
- Una vez finalizado nos vamos hacia el directorio "resourcemanager" en donde usaremos oci-cli para invocar un servicio  de OCI llamado Resource Manager que sirve como lugar centralizado para la ejecución de Terraform donde enseñaremos como desplegar infraestructura más compleja incluyendo Oracle Kubernetes Engine.
+DevOps is all about automation which of course includes infrastructure provisioning. There are many tools that can helps us on this task but Terraform is the world most known Infrastructure as Code tool and with the convine solution such as Oracle Resource Manger we can have a centralized platform to deploy and monitor our Infrastructure lifecycle changes. 
+
+After completing the previous step we now move to the directory called "resourcemanager" where we are going to use oci-cli tool to call Oracle Resource Manager to execute Terraform code; the idea of this lab is to understand the Infrastructure as Code concept and how easy it is to deploy resources using this solution. 
 
 ### 4. Oracle Kubernetes Engine (OKE)
 
-Finalmente nos vamos hacia el directorio "oke". Acá veremos como generar nuestro kubeconfig para conectarnos al cluster creado en el tutorial pasado, explicaremos como conectarnos al servicios "Oracle Container Registry", subiremos imagenes como prueba y finalmente desplegaremos un microservicio basado en Java.
+Once we finished the previous lab we now move to "oke" directory. In this step we will generate a kubeconfig from a previous Oracle Kubernetes cluster created, we will learn how to connect to Oracle Container registry and how to deploy a sample aplication into our OKE. 
 
 ### Bonus
 
-Existe un directorio iac que contiene como sub directorio "terraform" donde se encuentra los archivos TF que se usan para el tutorial de infraestructura como código y otro archivo "packer" donde hay un ejemplo de como generar Vm templates a través de código usando la solución de Hashicorp llamada "Packer"
+Inside the "iac" directory there are two more directories; one is the terraform code used in the "resourcemanager lab" and the other one is a lab to create a vm template using "Packer".
 
 ![keepcalm](/img/keep-calms-and-do-devops.png)
 
