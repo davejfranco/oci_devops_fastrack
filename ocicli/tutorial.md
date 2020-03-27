@@ -24,7 +24,7 @@ Once we have our cloud shell loaded up the first thing we will do is to type ```
 
 ![cloud_shell](/img/ocicli/cloudshell_help.jpg)
 
-One of the advantage of using cloud shell is that the oci-cli is already setup and ready to use, but if you need to use oci-cli outside cloudshell you'll have to follow the steps on this [link](1_install.md) to install and configure it.
+One of the advantage of using cloud shell is that the oci-cli is already setup and ready to use, but if you need to use oci-cli outside cloudshell you'll have to follow the steps on this [link](ocicli_install.md) to install and configure it.
 
 Additionally includes the following tools.
 
