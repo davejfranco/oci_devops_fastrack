@@ -1,39 +1,39 @@
-# Creación de Red Virtual
+# Create a virtual netowork
 
-En este tutorial vamos a crear una vcn.
+In this tutorial we are going to create a new virtual netowork to later create or compute resource to execute this workshop.
 
-## Pre-Requisitos 
+## Pre-requesites 
 
 - Cuenta Oracle Cloud.
 
-## Instrucciones
+## Instructions
 
-Debemos hacer click en el menu ubicado en la parte superior izquierda, posicionarnos en la opción "Networking" y hacemos click en la opción "Virtual Cloud Networks".
+To get to the network service, left click in the button located in the top left of the home page, a menu will display on scroll down to "Networking" and left click again in "Virtual Cloud Networks"
 
 ![vcn_location](/img/setup/vcn_location.jpg)
 
-Acto seguido hacemos click en "Networking Quickstart"
+Next thing, lef click in "Networking Quickstart" button.
 
 ![vcnquick](/img/setup/net_quick.jpg)
 
-Con la opción "VCN with Internet Connectivity" hacemos click en "Start Workflow"
+Make sure "VCN with Internet Connectivity" is selected a then left click in "Star Workflow button".
 
 ![workflow](/img/setup/vcn_option.jpg)
 
-Llenamos los detalles
+Fill the details with the following info.
 
 vcn name: "demovcn"
 vcn cidr block: 172.16.0.0/16
 public subnet cidr block: 172.16.1.0/24
 private subnet cidr block: 172.16.2.0/24
 
-En cuanto al compartment podemos seleccionar cualquiera que tengamos.
+Note: In the compartment section you can use either the root compartment or any other of your preference as this resources will be temporary to execute the workshop.
 
 ![vcn fill](/img/setup/vcn_detail.jpg)
 
-Hacemos click en "Next", podremos ver un review de los recursos que sera creados y hacemos click en "Create" en la parte inferior.
+Click Next button at the bottom of the screen. You will get a review of all the resources that will be created; left click in "Create".
 
 ![create](/img/setup/vcn_review.jpg)
 
-Y listo!!
+and you're ready!!
 
