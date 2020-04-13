@@ -12,7 +12,7 @@ oci iam compartment list --all
 
 Take note of the "compartment-id" as this is the "root" compartment as is shown in the next image.
 
-![rootocid](/img/ocicli/ocicli/ocid.jpg)
+![rootocid](/img/ocicli/ocid.jpg)
 
 ## 2. Create a new compartment 
 
