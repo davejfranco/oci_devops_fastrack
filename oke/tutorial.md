@@ -11,17 +11,17 @@ OKE is an enterprise-level, developer-friendly managed Kubernetes service that r
 
 The first thing is to look for our cluster, for this we go to the upper left menu and under "Developer Services" -> Container Cluster (OKE). As we can see from that same menu we can also access the Container Registry, Functions and API Gateway.
 
-![oke location](/img/oke/oke_location.jpg)
+![oke location](/src/img/oke/oke_location.jpg)
 
 Once we are the the OKE service page we click on the name of our cluster where we can see the details of our K8s and Node Pool (worker nodes of our cluster).
 
-![k8s dashboard](/img/oke/oke_info.jpg)
+![k8s dashboard](/src/img/oke/oke_info.jpg)
 
-![np info](/img/oke/oke_np_info.jpg)
+![np info](/src/img/oke/oke_np_info.jpg)
 
 At the top of the dashboard we can click in the "Access Kubeconfig" button, this will display the step to follow to generate the kubeconfig to access our cluster.
 
-![kubeconfig](/img/oke/kubeconfig_steps.jpg)
+![kubeconfig](/src/img/oke/kubeconfig_steps.jpg)
 
 Example:
 
@@ -30,7 +30,7 @@ oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.phx.aaaaaaaaae4d
 ```
 Once generated, we can now access the cluster.
 
-![kubeconfig](/img/oke/kubeconfig_ready.jpg)
+![kubeconfig](/src/img/oke/kubeconfig_ready.jpg)
 
 ## 2. Accesing the Oracle Container Registry.
 
@@ -38,13 +38,13 @@ Oracle container registry is a 100% Docker Registry v2 compliant service for sto
 
 To access the registry in the console, from the upper left corner in the "Developer Services" section we will find "Registry (OCIR)" when we click we will see the Registry home page.
 
-![ocir home](/img/oke/registry_home.jpg)
+![ocir home](/src/img/oke/registry_home.jpg)
 
 The first thing we are going to do is docker login so that later we can upload images to our registry; For this, the first thing we must do is generate an authentication token. We must go to the user settings in the upper right and then in the dashboard under the "Resources" section look for the "Auth Token" option.
 
-![user settings](/img/oke/user_settings.jpg)
+![user settings](/src/img/oke/user_settings.jpg)
 
-![auth](/img/oke/auth_section.jpg)
+![auth](/src/img/oke/auth_section.jpg)
 
 Click on "Generate Token" and we must copy the token, after closing the pop-up window we will not be able to see it later.
 
@@ -108,7 +108,7 @@ docker push iad.ocir.io/<tenant name>/helidon-quickstart-se
 
 Once finished uploading the image, now we are going to create our app in kubernetes. Edit the kubernetes.yaml file inside the project directory that we just cloned, rename our image in the "image" section inside the "Deployment" resource section with our recently tagged image.
 
-![helidon](/img/oke/helidonimage.jpg)
+![helidon](/src/img/oke/helidonimage.jpg)
 
 and finally we create the resource.
 

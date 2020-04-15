@@ -10,13 +10,13 @@ In this lab we will make use if Oci-cli, Terraform and Resource Manager to deplo
 
 Resource Manager tasks flow.
 
-![rm](/img/resourcemanager/resource_manager_workflow.jpg)
+![rm](/src/img/resourcemanager/resource_manager_workflow.jpg)
 
 ## 1. Edit our terraform template
 
 Move to iac/terraform directory within the project. Once inside we are going to locate the variables.tf file where we will replace some variables according to our tenant.
 
-![vtf](/img/iac/variablestf.jpg)
+![vtf](/src/img/iac/variablestf.jpg)
 
 - The first thing is to fill the space between quotes corresponding to the region; if you are in Ashburn the value is "us-ashburn-1".
 
@@ -50,15 +50,15 @@ oci resource-manager stack create --compartment-id $cid --config-source stack.zi
 
 Executed the command we must have the following output in our terminal, take note of the "id"; this is our stack-id for future operations.
 
-![stack create out](/img/resourcemanager/create_stack_output.jpg)
+![stack create out](/src/img/resourcemanager/create_stack_output.jpg)
 
 ### Go to the Oracle cloud console, you will see our recently created stack 
 
 We are going to see our newly created stack and we can also click and explore all the options that we can take in Resource Manager. The idea is that we can deploy our terraform recipies just as we would do it from our machine but from a centralized place without the need to have a CI/CD server just for this.
 
-![new stack](/img/resourcemanager/create_stack_output_ui.jpg)
+![new stack](/src/img/resourcemanager/create_stack_output_ui.jpg)
 
-![stack console](/img/resourcemanager/stack_created_dashboard.jpg)
+![stack console](/src/img/resourcemanager/stack_created_dashboard.jpg)
 
 ## 3. Terraform Plan
 
@@ -68,11 +68,11 @@ Let's first run a Terraform plan via Resource manager first.
  oci resource-manager job create-plan-job --stack-id "ocid1.ormstack.oc1.phx.aaaaaaaa35d5mvdzdlmdabjevxuk3sb6vh3weld4nq6jcldnv5fw5fdhnvqq"
    ```
 
-   ![plan output](/img/resourcemanager/terminal_plan_stack_output.jpg)
+   ![plan output](/src/img/resourcemanager/terminal_plan_stack_output.jpg)
 
 As we can see in the image above, we see that the plan was accepted, what happens now is that in Resource Manager a "Terraform plan" is being executed.
 
-![plan UI out](/img/resourcemanager/plan_stack_output.jpg)
+![plan UI out](/src/img/resourcemanager/plan_stack_output.jpg)
 
 In the output in terminal, we must write down the "id" and then run our Terraform apply.
 
@@ -86,17 +86,17 @@ oci resource-manager job create-apply-job --stack-id "ocid1.ormstack.oc1.phx.aaa
 
 The "execution plan strategy" determines whether to use a previous Job plan or whether to make a plan first and then apply.
 
-![apply output](/img/resourcemanager/terminal_appy_stack_output.jpg)
+![apply output](/src/img/resourcemanager/terminal_appy_stack_output.jpg)
 
 In console while it is pending we will see this.
 
-![pending ui](/img/resourcemanager/apply_stack_output_pending.jpg)
+![pending ui](/src/img/resourcemanager/apply_stack_output_pending.jpg)
 
 We have to wait a bit while creating our Network, Kubernetes Cluster and its nodes so...just chill!!!
 
 Then we go back to the console and we will see the result of our apply. We already have our cluster ready!
 
-![terraform output](/img/resourcemanager/apply_stack_output_success.jpg)
+![terraform output](/src/img/resourcemanager/apply_stack_output_success.jpg)
 
 ## 5. Update Stack (Opcional)
 
