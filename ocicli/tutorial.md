@@ -18,7 +18,7 @@ To make use of Oracle cloud shell the first thing to have is a valid Oracle Clou
 
 Locate the cloud shell icon in the upper right side of the home. Left click an that's it! 
 
-![cloudshell](/src/img/iac/comparment_menu.jpg/img/ocicli/cloudshell.jpg)
+![cloudshell](/src/img/ocicli/cloudshell.jpg)
 
 Once we have our cloud shell loaded up the first thing we will do is to type ```help``` and it will display useful information about what cloud shell includes, limitations and how to copy paste if your using windows or Mac.
 
