@@ -6,6 +6,14 @@ But how do we deploy this code? It is practically bad idea to do it from our own
 
 In this lab we will make use if Oci-cli, Terraform and Resource Manager to deploy a new virtual cloud network and a Kubernetes cluster (OKE).
 
+## Prerequisites
+
+- oci-cli
+- Download the project
+
+```
+~$git clone https://github.com/davejfranco/oci_devops_fastrack.git
+```
 ## Resource Manager Workflow
 
 Resource Manager tasks flow.
@@ -14,7 +22,7 @@ Resource Manager tasks flow.
 
 ## 1. Edit our terraform template
 
-Move to iac/terraform directory within the project. Once inside we are going to locate the variables.tf file where we will replace some variables according to our tenant.
+Move to src/iac/terraform directory within the project directory. Once inside we are going to locate the variables.tf file where we will replace some variables according to our tenant.
 
 ![vtf](/src/img/iac/variablestf.jpg)
 
