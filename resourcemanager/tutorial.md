@@ -9,10 +9,10 @@ In this lab we will make use if Oci-cli, Terraform and Resource Manager to deplo
 ## Prerequisites
 
 - oci-cli
-- Download the project
+- Download the demo source code at
 
 ```
-~$git clone https://github.com/davejfranco/oci_devops_fastrack.git
+git clone https://github.com/davejfranco/oci-devopsft-src.git
 ```
 ## Resource Manager Workflow
 
@@ -22,7 +22,7 @@ Resource Manager tasks flow.
 
 ## 1. Edit our terraform template
 
-Move to src/iac/terraform directory within the project directory. Once inside we are going to locate the variables.tf file where we will replace some variables according to our tenant.
+Move to oci-devopsft-src directory within the project directory. Once inside we are going to locate the variables.tf file where we will replace some variables according to our tenant.
 
 ![vtf](/src/img/iac/variablestf.jpg)
 
@@ -30,12 +30,6 @@ Move to src/iac/terraform directory within the project directory. Once inside we
 
 - Then we are going to replace the variable "compartment_id" fill it with the OCID of the compartment where we are deploying our resources, remember that in the console if we go to Menu -> Identity -> Comparments we will see the list of compartments and we will find the OCID we want to use.
 
-- Finally, as we did in the oci-cli tutorial, you need the OCID of the image to use for the worker nodes of our k8s cluster. Remember that you can visit https://docs.cloud.oracle.com/en-us/iaas/images/image/2fca4c99-1e9b-4a60-b41b-c73ee7ac36c1/ and obtain this validation according to the region where you are creating the resources; use this value to replace the "node_image_id" variable.
-
-  Note: 
-
-  - If your in us-ashburn-1 the OCID you should use in the variable "node_image_id" es ocid1.image.oc1.iad.aaaaaaaamspvs3amw74gzpux4tmn6gx4okfbe3lbf5ukeheed6va67usq7qq
-  - Or if you are executing this lab on us-phoenix-1 the OCID you shoudl use in the "node_image_id" variable is ocid1.image.oc1.phx.aaaaaaaamff6sipozlita6555ypo5uyqo2udhjqwtrml2trogi6vnpgvet5q
 
 ## Pasos 2. Create the stack
 
@@ -106,20 +100,22 @@ Then we go back to the console and we will see the result of our apply. We alrea
 
 ![terraform output](/src/img/resourcemanager/apply_stack_output_success.jpg)
 
-## 5. Update Stack (Opcional)
+## 5. Update Stack
 
-If we have made a mistake, we can update the stack as follows.
+Once our cluster is ready and you can take a look at Menu --> Developer Services --> Container Cluster (OKE), lets now say that we need to scale our cluster as right now it only has only one worker node. For this go back to the variable.tf file in the demo source code and modify the variable "nodes_per_net" and set the value to 2.
 
-- We make the necessary changes to fix the problem.
+![variablestf node size](/src/img/resourcemanager/var_nodes.jpg)
 
-- Zip compress the stack files ```zip stack.zip *.tf```
+- Zip compress the stack files again ```zip stack.zip *.tf```
 
-- We do the update with the following command.
+- Update with the following command.
 
   ```shell
   oci resource-manager stack update --config-source stack.zip --stack-id $stackid
   ```
 
-- Again we will have to execute the steps of Terraform Plan and Terraform apply.
+This time we will directly send a Terraform apply job.
 
-  
+  ```shell
+  oci resource-manager  job create-apply-job --stack-id $stackid --execution-plan-strategy "AUTO_APPROVED"
+  ```
