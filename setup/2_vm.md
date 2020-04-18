@@ -1,55 +1,55 @@
 # VM workshop
 
-In this tutorial we are lunching a VM to use it during the execution of this workshop.
+En este tutorial vamos a crear un servidor para poder ejectura nuestro workshop.
 
-## 1. VM creation
+## 1. Vamos a crear una VM
 
-Locate the menu in the top left, click and then click again in "Compute" then select "Instances".
+Lo primero es buscar el menú en la parte superior izquiera, hacemos click y en "Compute" --> "instances" y hacemos click.
 
 ![console](/img/setup/compute.jpg)
 
-Click in the "Create Instance" button and fill the details.
+Luego hacemos click en el botón de "Create Instance" y llenar los detalles.
 
 ![serverName](/img/setup/vm_name.jpg)
 
-In the "Virtual cloud network compartment" make sure you slect the compartment used int he previous section.
+En la sección de "Virtual cloud network compartment" nos aseguramos que estamos en el compartment donde hemos creado la vcn en el tutorial anterior.
 
 ![net](/img/setup/vcnypublicip.jpg)
 
-Also make sure you select a subnet type public and "Assign a public IP" so we can access the VM later on.
+Asegurarse de seleccionar la red que sea tipo pública y seleccionar "Assign a public IP  address" para que podamos acceder desde el internet.
 
 ![ssh](/img/setup/sshkey.jpg)
 
-Select your ssh public key or we can just paste its content and the click "Create".
+Seleccionamos nuestra llave ssh pública o la pegamos directamente y hacemos click en "Create".
 
-Note: There is a keypair already in the ssh directory within this section.
+Nota: Si te descargas el proyecto dentro de la carpeta setup --> ssh encontrarás un par de llaves que puedes usar para tu vm del workshop.
 
-Once the instance is in green state, lets test connection.
+Una vez la vm este lista probamos hacer login.
 
 ```shell
 ssh -i <ssh location >/id_rsa opc@<public ip>
 ```
 
-Next lets install git.
+Lo primero que debemos hacer una vez dentro de nuestro server es instalar git.
 
 ```shell
 sudo yum install -y git
 ```
 
-## 2. Download workshop source code
+## 2. Descargar source code del workshop
 
-Now the we have git, lets clone the workshop repository.
+Ahora que tenemos git, vamos a descargarnos el workshop y para esto.
 
 ```shell
 git clone https://github.com/davejfranco/oci_devops_fastrack.git
 ```
 
-Once the repo was downloaded, move the setup directory and execute the setup.sh script.
+Nos movemos al directorio setup dentro del directorio del proyecto y vamos a instalar algunos pre-requisitos ejecutamos.
 
 ```shell
 cd oci_devops_fastrack/setup && chmod +x setup.sh && ./setup.sh
 ```
 
-This will install docker and kubectl we will need in other labs.
+Estos nos instalará Docker y Kubectl.
 
-now we are ready to start this workshop.
+y estamos listos para comenzar.

@@ -1,129 +1,132 @@
 # Oracle Kubernetes Engine (OKE)
 
-OKE is an enterprise-level, developer-friendly managed Kubernetes service that runs a highly available cluster with the control, security, and predictive performance of Oracle Cloud Infrastructure. OKE is 100% compatible with the CNCF ecosystem and integrated with OCI services.
+OKE es un servicio manejado de Kubernetes amigable al desarrollador, nivel enterprise que corre un cluster altamente disponible con el control, seguridad, y rendimiento predictivo de Oracle Cloud Infrastructure. OKE es 100% compatible con el ecosistema CNCF e integrado con los servicios de OCI.
 
-## Pre-requisites
+## Pre-Requisitos
 
 - Kubectl, Link: https://kubernetes.io/es/docs/tasks/tools/install-kubectl/
 - Docker, Link: https://docs.docker.com/install/ 
 
-## 1. Accessing the cluster.
+## 1. Paso Acceder al cluster.
 
-The first thing is to look for our cluster, for this we go to the upper left menu and under "Developer Services" -> Container Cluster (OKE). As we can see from that same menu we can also access the Container Registry, Functions and API Gateway.
+Lo primero es que buscamos nuestro cluster, para ello vamos al menu superior izquierdo y bajo "Developer Services" --> Container Cluster (OKE) hacemos click. Como podemos ver desde ese mismo menú también podremos accerder al Container Registry, Functions y API Gateway.
 
 ![oke location](/img/oke/oke_location.jpg)
 
-Once we are the the OKE service page we click on the name of our cluster where we can see the details of our K8s and Node Pool (worker nodes of our cluster).
+A hacemos click en el nombre de nuestro cluster donde podremos ver los detalles de nuestro K8s y Node Pool (nodos workers de nuestro cluster).
 
 ![k8s dashboard](/img/oke/oke_info.jpg)
 
 ![np info](/img/oke/oke_np_info.jpg)
 
-At the top of the dashboard we can click in the "Access Kubeconfig" button, this will display the step to follow to generate the kubeconfig to access our cluster.
+En la parte superior del dashboard podemos acceder al Kubeconfig de nuestro cluster, este esta correlacionado con nuestro usuario IAM del tenant. Si hacemos click se despliegan unos pasos a seguir para generarlo.
 
 ![kubeconfig](/img/oke/kubeconfig_steps.jpg)
 
-Example:
+A continuación un ejemplo del comando ejecutado con powershell
 
 ```powershell
 oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.phx.aaaaaaaaae4dgzrzhe3gcnrqgzrdkyldgbqwmyrwmuzdmn3cgcrtayzuga3t --file C:\Users\djfranco\.kube\config --region us-phoenix-1 --token-version 2.0.0
 ```
-Once generated, we can now access the cluster.
+
+Una vez generado, ya podemos acceder al cluster.
 
 ![kubeconfig](/img/oke/kubeconfig_ready.jpg)
 
-## 2. Accesing the Oracle Container Registry.
+## 2. Acceder al Oracle Container Registry.
 
-Oracle container registry is a 100% Docker Registry v2 compliant service for storing docker images and integrated with Oracle Cloud solutions and services.
+Oracle container registry es un servicio 100% compatible con Docker Registry v2 para almacenar images docker e integrado con las soluciones y servicios de Oracle Cloud.
 
-To access the registry in the console, from the upper left corner in the "Developer Services" section we will find "Registry (OCIR)" when we click we will see the Registry home page.
+Para accerder al registry en la consola, desde la esquina superior izquiera en la sección "Developer Services" nos encontraremos "Registry (OCIR)" al hacer click veremos el home del Registry.
 
 ![ocir home](/img/oke/registry_home.jpg)
 
-The first thing we are going to do is docker login so that later we can upload images to our registry; For this, the first thing we must do is generate an authentication token. We must go to the user settings in the upper right and then in the dashboard under the "Resources" section look for the "Auth Token" option.
+Lo primero que vamos hacer es hacer docker login para que luego podamos subir imagenes a nuestro registry; para eso lo primero que debemos hacer es generar un token de autentication. Debemos ir a la configuración de usuarios en la parte superior derecha y luego en el dashboard debajo de la sección de "Resources" buscar la opción "Auth Token".
 
 ![user settings](/img/oke/user_settings.jpg)
 
 ![auth](/img/oke/auth_section.jpg)
 
-Click on "Generate Token" and we must copy the token, after closing the pop-up window we will not be able to see it later.
+Hacer click en "Generate Token" y debemos copiar el token, luego de cerrado la ventana emergente no podremos verlo mas adelante.
 
-Now to login, it will depend on what region we are in, here we can see the different "Region Key" in all OCI regions https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm. If we are in ashburn our login region is ```iad.ocir.io```, the user of our registry depends on the tenant name and username ```<tenancy name>/<username>``` . Finally, the password is the token that we have previously generated.
+Ahora para hacer login va depender en que región que nos encontramos, acá podemos ver los distintas "Region Key" en todas las regiones de OCI https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm. Si estamos en ashburn nuestras region de login es iad.ocir.io, el usuario de nuestro registry depende del nombre del tenant y nombre de usuario  ```<nombre del tenancy>/<usuario oci>``` . Finalmente el password es el token que hemos generado anteriormente.
 
-An example of login would be the following:
+Un ejemplo de login seria el seguiente:
 
 ```shell
 docker login iad.ocir.io -u davejfranco/dave.franco@oracle.com
 ```
 
-To upload images to the registry we must tag them as follows ```<region>.ocir.io/<tenancy name>/<docker repository name>``` 
+Para subir imagenes al  registry debemos taggearlos de la siquiente forma ```<region>.ocir.io/<nombre del tenant>/<nombre del repositorio>``` 
 
-Example:
+Ejemplo:
 
 ```shell
 docker pull nginx && docker tag nginx iad.ocir.io/davejfranco/nginx
 ```
-Now we can upload it to our registry, this command will automatically create the repository as well.
+
+Ahora podemos subirlo a nuestro registry, este comando automaticamente también creará el repositorio.
 
 ```
+
 docker push iad.ocir.io/<tenant name>/nginx
 ```
 
-##  3. Creat access from the OKE cluster to the Docker registry.
+##  3. Crear acceso del cluster al registry.
 
-By default our cluster does not have access to the registry and in order to enable it what we need is to create a resource using kubectl of type "secret" with the same data that we use to docker login.
+Por defecto nuestro cluster no tiene acceso al registry y para poder habilitarlo lo que necesitamos es crear un recurso mediante kubectl de tipo "secret" con los mismos datos que usamos para hacer docker login.
 
 ```shell
 $ kubectl create secret docker-registry ocirsecret
 --docker-server=<region-key>.ocir.io --docker-username='<tenancy-namespace>/<oci-username>' --docker-password='<oci-auth-token>' --docker-email='<email-address>'
 ```
 
-Example:
+Ejemplo:
 
 ```shell
 kubectl create secret docker-registry ocirsecret --docker-server=iad.ocir.io --docker-username='davejfranco/dave.franco@oracle.com' --docker-password='1AS>)HZj(ZQUfPcI}nG_' --docker-email='dave.franco@oracle.com'
 ```
 
-## 4. Deploy app to our OKE.
+## 4. Desplegar app a nuestro OKE.
 
-We are going to deploy our Helidon SE based microservice on our Kubernetes cluster.
+Vamos a desplegar nuestro microservicio basado en Helidon SE en nuestro cluster Kubernetes.
 
-The first thing we are going to do is clone the following project.
+Lo primero que vamos hacer es a clonar el siguiente proyecto.
 
 ```shell
 git clone https://github.com/davejfranco/helidon-quickstart-se.git
 ```
 
-With the use of docker we will compile the image.
+Con el uso de docker vamos a compilar la image.
 
 ```shell
 docker build -t iad.ocir.io/<tenant name>/helidon-quickstart-se .
 ```
 
-Then we upload it to our registry
+Luego lo subimos a nuestro registry
 
 ```
 docker push iad.ocir.io/<tenant name>/helidon-quickstart-se
 ```
 
-Once finished uploading the image, now we are going to create our app in kubernetes. Edit the kubernetes.yaml file inside the project directory that we just cloned, rename our image in the "image" section inside the "Deployment" resource section with our recently tagged image.
+Una vez finalizado de subir la imagen, ahora vamos a crear nuestra app en kubernetes. Lo que debemos hacer es editar el archivo kubernetes.yaml dentro del directorio del proyecto que acabamos de clonar cambiar el nombre de nuestra image en la sección "image" en el recurso "Deployment" por la que acabamos de subir.
 
 ![helidon](/img/oke/helidonimage.jpg)
 
-and finally we create the resource.
+y finalmente creamos el recurso.
 
 ```shell
 kubectl create -f kubefile.yaml
 ```
 
-To verify the pod running.
+Para verificar el pod corriendo.
 
 ```shell
 kubectl get pods 
 ```
-to see the IP of our LoadBalancer service.
+
+y si queremos ver nuestro servicio expuesto para ver la IP de nuestro LoadBalancer.
 
 ```shell
 kubectl get services
 ```
-
