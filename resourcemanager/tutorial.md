@@ -114,7 +114,7 @@ Once our cluster is ready and you can take a look at Menu --> Developer Services
   oci resource-manager stack update --config-source stack.zip --stack-id $stackid
   ```
 
-This time we will directly send a Terraform apply job.
+- This time we will directly send a Terraform apply job.
 
   ```shell
   oci resource-manager  job create-apply-job --stack-id $stackid --execution-plan-strategy "AUTO_APPROVED"
