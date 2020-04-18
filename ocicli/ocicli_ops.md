@@ -12,7 +12,7 @@ oci iam compartment list --all
 
 Take note of the "compartment-id" as this is the "root" compartment as is shown in the next image.
 
-![rootocid](/src/img/ocicli/ocid.jpg)
+![rootocid](/img/ocicli/ocid.jpg)
 
 ## 2. Create a new compartment 
 
@@ -24,7 +24,7 @@ cid="ocid1.tenancy.oc1..aaaaaaaax662yezpjh5nn3semo46qbt3enwcjd2w2ayk7jsl6tgrbk2k
 
 Make sure you copy de "id" value of the out as shown in the image below as this will be the compartment we be using to create resources from now on.
 
-![compartmentOut](/src/img/ocicli/cid_output.jpg)
+![compartmentOut](/img/ocicli/cid_output.jpg)
 
 ## 3. Create new virtual cloud network
 
@@ -36,7 +36,7 @@ oci network vcn create --cidr-block 172.16.0.0/16 -c $cid
 
 Make sure you copy the ocid in the "id" field of the output as we will need it to create the subnet.
 
-![vcnid](/src/img/ocicli/vcnoutput.jpg)
+![vcnid](/img/ocicli/vcnoutput.jpg)
 
 ```shell
 oci network subnet create -c $cid --cidr-block 172.16.1.0/24 --vcn-id $vcnid
@@ -44,7 +44,7 @@ oci network subnet create -c $cid --cidr-block 172.16.1.0/24 --vcn-id $vcnid
 
 the vcnid represents the id of the vcn we just created, once again copy the id field in the output.
 
-![subput](/src/img/ocicli/subnetoutput.jpg)
+![subput](/img/ocicli/subnetoutput.jpg)
 
 ## 3. Availability Domains
 
@@ -54,7 +54,7 @@ A vcn is a regional service as such it has as many availability domains as the r
 oci iam availability-domain list
 ```
 
-![ad](/src/img/ocicli/ads.jpg)
+![ad](/img/ocicli/ads.jpg)
 
 Take note of the name of one of them for example: "dvEY:US-ASHBURN-AD-1"
 
@@ -62,11 +62,11 @@ Take note of the name of one of them for example: "dvEY:US-ASHBURN-AD-1"
 
 Now we going to launch a new VM into our recently created vcn. Now we our going to need an OCID for our new VM, visit  https://docs.cloud.oracle.com/en-us/iaas/images/image/2fca4c99-1e9b-4a60-b41b-c73ee7ac36c1/, and move to the section "Image OCIDs". Copy de ocid of the region your executing this lab. 
 
-![ocid site](/src/img/ocicli/oracle_img_id_site.jpg)
+![ocid site](/img/ocicli/oracle_img_id_site.jpg)
 
 If you are in us-ashburn-1 please copy the OCID correspondent to this region.
 
-![ashburnOCID](/src/img/ocicli/oracle_img_id_ashburn.jpg)
+![ashburnOCID](/img/ocicli/oracle_img_id_ashburn.jpg)
 
 As an advice, you should create variable of each id as it will be easier to execute oci-cli commands later on.
 
@@ -84,11 +84,11 @@ To create a new VM just copy and paste the following command, make sure your usi
 oci compute instance launch --image-id $imgid --shape "VM.Standard2.1" --availability-domain "dvEY:US-ASHBURN-AD-1" --subnet-id $sid --compartment-id $cid
 ```
 
-![newvm](/src/img/ocicli/vmcreating.jpg)
+![newvm](/img/ocicli/vmcreating.jpg)
 
 Lets move to the OCI menu --> Compute and we will see our recently created VM.
 
-![uivm](/src/img/ocicli/ui_new_vm.jpg)
+![uivm](/img/ocicli/ui_new_vm.jpg)
 
 ## 6. Destroy the  VM
 
@@ -100,6 +100,6 @@ oci compute instance terminate --instance-id $vmid
 
 We will be asked if we want to remove the resource to which we respond with "Y"
 
-![vmtermination](/src/img/ocicli/vm_deletion.jpg)
+![vmtermination](/img/ocicli/vm_deletion.jpg)
 
 

@@ -18,11 +18,11 @@ To make use of Oracle cloud shell the first thing to have is a valid Oracle Clou
 
 Locate the cloud shell icon in the upper right side of the home. Left click an that's it! 
 
-![cloudshell](/src/img/ocicli/cloudshell.jpg)
+![cloudshell](/img/ocicli/cloudshell.jpg)
 
 Once we have our cloud shell loaded up the first thing we will do is to type ```help``` and it will display useful information about what cloud shell includes, limitations and how to copy paste if your using windows or Mac.
 
-![cloud_shell](/src/img/ocicli/cloudshell_help.jpg)
+![cloud_shell](/img/ocicli/cloudshell_help.jpg)
 
 One of the advantage of using cloud shell is that the oci-cli is already setup and ready to use, but if you need to use oci-cli outside cloudshell you'll have to follow the steps on this [link](ocicli_install.md) to install and configure it.
 

@@ -33,7 +33,7 @@ Once we finished the previous lab we now move to "oke" directory. In this step w
 
 Inside the "src" directory there are two more directories; one is the terraform code used in the "Infrastructure as code lab" and the other one is a lab to create a vm template using "Packer".
 
-![keepcalm](/src/img/keep-calms-and-do-devops.png)
+![keepcalm](/img/keep-calms-and-do-devops.png)
 
 
 

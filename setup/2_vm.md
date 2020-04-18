@@ -6,19 +6,19 @@ In this tutorial we are lunching a VM to use it during the execution of this wor
 
 Locate the menu in the top left, click and then click again in "Compute" then select "Instances".
 
-![console](/src/img/setup/compute.jpg)
+![console](/img/setup/compute.jpg)
 
 Click in the "Create Instance" button and fill the details.
 
-![serverName](/src/img/setup/vm_name.jpg)
+![serverName](/img/setup/vm_name.jpg)
 
 In the "Virtual cloud network compartment" make sure you slect the compartment used int he previous section.
 
-![net](/src/img/setup/vcnypublicip.jpg)
+![net](/img/setup/vcnypublicip.jpg)
 
 Also make sure you select a subnet type public and "Assign a public IP" so we can access the VM later on.
 
-![ssh](/src/img/setup/sshkey.jpg)
+![ssh](/img/setup/sshkey.jpg)
 
 Select your ssh public key or we can just paste its content and the click "Create".
 
