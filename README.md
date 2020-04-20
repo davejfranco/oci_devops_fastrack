@@ -23,15 +23,12 @@ The "DevOps way" of doing stuff is using terminal, in this regard Oracle Cloud h
 
 DevOps is all about automation which of course includes infrastructure provisioning. There are many tools that can helps us on this task but Terraform is the world most known Infrastructure as Code tool and with the convine solution such as Oracle Resource Manger we can have a centralized platform to deploy and monitor our Infrastructure lifecycle changes. 
 
-After completing the previous step we now move to the directory called "resourcemanager" where we are going to use oci-cli tool to call Oracle Resource Manager to execute Terraform code; the idea of this lab is to understand the Infrastructure as Code concept and how easy it is to deploy resources using this solution. 
+After completing the previous where we are going to use oci-cli tool to call Oracle Resource Manager to execute Terraform code; the idea of this lab is to understand the Infrastructure as Code concept and how easy it is to deploy resources using this solution. 
 
 ### 4. [Oracle Kubernetes Engine (OKE)](/oke/tutorial.md)
 
-Once we finished the previous lab we now move to "oke" directory. In this step we will generate a kubeconfig from a previous Oracle Kubernetes cluster created, we will learn how to connect to Oracle Container registry and how to deploy a sample aplication into our OKE. 
+Finally in this step we will generate a kubeconfig from a previously Kubernetes cluster created, we will learn how to connect to Oracle Container registry and how to deploy a sample aplication into our OKE. 
 
-### Bonus
-
-Inside the "src" directory there are two more directories; one is the terraform code used in the "Infrastructure as code lab" and the other one is a lab to create a vm template using "Packer".
 
 ![keepcalm](/img/keep-calms-and-do-devops.png)
 

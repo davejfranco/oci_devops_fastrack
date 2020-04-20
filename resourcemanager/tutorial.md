@@ -102,7 +102,7 @@ Then we go back to the console and we will see the result of our apply. We alrea
 
 ## 5. Update Stack
 
-Once our cluster is ready and you can take a look at Menu --> Developer Services --> Container Cluster (OKE), lets now say that we need to scale our cluster as right now it only has only one worker node. For this go back to the variable.tf file in the demo source code and modify the variable "nodes_per_net" and set the value to 2.
+Once our cluster is ready and you can take a look at Menu --> Developer Services --> Container Cluster (OKE), lets now say that we need to scale our cluster as right now it only has one worker node. For this go back to the variable.tf file in the demo source code and modify the variable "nodes_per_net" and set the value to 2.
 
 ![variablestf node size](/img/resourcemanager/var_nodes.jpg)
 

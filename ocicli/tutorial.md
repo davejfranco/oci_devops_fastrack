@@ -40,5 +40,3 @@ Additionally includes the following tools.
 - ansible
 
 So your good to go. Please go to the [next](./ocicli_ops.md) step of this workshop.
-
-To install anc configure oci-cli tool follow this [tutorial](./ocicli_install.md) (Optional)
