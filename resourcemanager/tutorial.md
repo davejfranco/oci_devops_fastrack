@@ -98,8 +98,6 @@ Luego vamos de nuevo a la consola y veremos el resultado de nuestro apply. Ya te
 
 ## 5. Actualizar el Stack
 
-Once our cluster is ready and you can take a look at Menu --> Developer Services --> Container Cluster (OKE), lets now say that we need to scale our cluster as right now it only has only one worker node. For this go back to the variable.tf file in the demo source code and modify the variable "nodes_per_net" and set the value to 2.
-
 Una vez el cluster kubernetes esta listo; podemos verlo si vamos al Menu --> Developer Services --> Container Cluster (OKE). Digamos que necesitamos escalar nuestro cluster y añadir un noda adicional ya que el que creamos solo tiene un nodo worker. Para esto nos vamos al archivo variables.tf que se encuentra dentro del directorio del código terraform y en la variables "nodes_per_net" cambiamos el valor a 2.
 
 ![variablestf node size](/img/resourcemanager/var_nodes.jpg)
