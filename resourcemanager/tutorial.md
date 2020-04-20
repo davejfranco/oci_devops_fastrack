@@ -1,15 +1,15 @@
-# Deploying Infrastructure as Code - Oracle Resource Manager
+# Desplegando infraestructura como código - Oracle Resource Manager
 
-When we want to deploy more complex infrastructures, which have many resources that depend on each other, it is necessary to use a much more robust tool. For this tutorial we will make use of Terraform that allows us to do just this by using a simple language known as HCL (Hashicorp Configuration Language) to describe our architecture.
+Cuando deseamos desplegar infraestructuras más complejas, que poseen muchos recursos que dependen entre si, es necesario hacer uso de una herramienta mucho más robusta. Para este tutorial haremos uso de Terraform que nos permite precisamente esto mediante el uso de una lenguaje sencillo conocido como HCL (Hashicorp Configuration Language) para describir nuestra arquitectura.
 
-But how do we deploy this code? It is practically bad idea to do it from our own laptop, so a centralized place that keeps a record of the changes and tasks executed with this code is ideal; For this we will use Oracle Resource Manager which is an OCI solution that allows us to achieve precisely this. A centralize terraform deployments platform and keep a record of execution changes.
+¿Pero cómo desplegamos este código? es mala prácticamente que lo hagamos desde nuestra propia laptop por tanto es ideal un lugar centralizado que guarde un registro de los cambios y tareas ejecutadas con este código; para esto usaremos Resource Manager que es una solución de OCI que te permite precisamente centralizar los deployments de terraform y mantener un registro de cambios de ejecución.
 
-In this lab we will make use if Oci-cli, Terraform and Resource Manager to deploy a new virtual cloud network and a Kubernetes cluster (OKE).
+A continuación usaremos Oci-cli, Terraform y Resource Manager para desplegar una VCN nueva y un cluster de Kubernetes para mas tarde podamos desplegar microservicios en Docker.
 
-## Prerequisites
+## Prerequisitos
 
 - oci-cli
-- Download the demo source code at
+- Descarga el código con el siguiente comando.
 
 ```
 git clone https://github.com/davejfranco/oci-devopsft-src.git
@@ -20,45 +20,40 @@ Resource Manager tasks flow.
 
 ![rm](/img/resourcemanager/resource_manager_workflow.jpg)
 
-## 1. Edit our terraform template
+## 1. Editar nuestro terraform template
 
-Move to oci-devopsft-src directory within the project directory. Once inside we are going to locate the variables.tf file where we will replace some variables according to our tenant.
+Ve al directorio oci-devopsft-src. Una ve dentro localizamos el archivo variables.tf en donde vamos a reemplazar algunas variables con respecto a nuestro tenant.
 
 ![vtf](/img/iac/variablestf.jpg)
 
-- The first thing is to fill the space between quotes corresponding to the region; if you are in Ashburn the value is "us-ashburn-1".
+- Lo primero es llenar el espacio entre comillas correspondiente a la region; si estas en Ashburn el valor es "us-ashburn-1".
 
+- Luego vamos a reemplazar la variable "compartment_id" donde tenemos que llenarlo con el OCID del compartment donde estamos desplegando nuestro recursos. Recuerda que en la consola si nos vamos al Menú --> Identity --> Comparments veremos la lista de compartments y encontraremos el OCID buscado.
 
-- Then we are going to replace the variable "compartment_id" fill it with the OCID of the compartment where we are deploying our resources, remember that in the console if we go to Menu -> Identity -> Comparments we will see the list of compartments and we will find the OCID we want to use.
->>>>>>> develop-en
+## Pasos 2. Crear el stack
 
-
-## Pasos 2. Create the stack
-
-Now that we modified our variable file we are going to compress all the terraform files with tf extension located in the ./iac/terraform directory in a zip format.
+Ahora que modificamos nuestro terraform vamos a comprimir los archivos terraform con extención tf ubicados en el directorio ./iac/terraform en formato zip.
 
 ```shell
 zip stack.zip *.tf
 ```
-
-Copy the compartment_id where the stack will be created
+Copiamos el compartment id en donde se creará el stack
 
 ```
 oci iam compartment list --all #Listar todos los compartments en tu tenant
 ```
-Now we are going to create the stack, as you can see below the variable $cid represents the OCID of the compartment where we are going to create the stack, additionally we add a name to the stack and the version of terraform that we are going to use which in this case is 0.12.x.
+Ahora vamos a crear el stack, como puedes ver más abajo la variable $cid representa el OCID del compartment donde vamos a crear el stack, adicionalmente añadimos un nombre al stack y la versión de terraform que vamos a usar que en este caso es 0.12.x.
 
 ```shell
 oci resource-manager stack create --compartment-id $cid --config-source stack.zip --display-name "Demo Stack" --terraform-version "0.12.x"
 ```
-
-Executed the command we must have the following output in our terminal, take note of the "id"; this is our stack-id for future operations.
+Ejecutado el comando debemos tener el siguiente output en nuestra terminal, tomemos nota del "id"; este es nuestro stack-id para futuras operaciones.
 
 ![stack create out](/img/resourcemanager/create_stack_output.jpg)
 
-### Go to the Oracle cloud console, you will see our recently created stack 
+### Si nos vamos a la consola, veremos el stack creado via oci-cli
 
-We are going to see our newly created stack and we can also click and explore all the options that we can take in Resource Manager. The idea is that we can deploy our terraform recipies just as we would do it from our machine but from a centralized place without the need to have a CI/CD server just for this.
+Vamos a ver nuestro recién creado stack y además podemos hacer clic y explorar todas las opciones que podemos tomar en Resource Manager. La idea es que podamos desplegar nuestras receta terraform tal y como lo hariamos desde nuestra máquina pero desde una lugar centralizado sin la necesidad de tener un servidor de CI/CD para esto.
 
 ![new stack](/img/resourcemanager/create_stack_output_ui.jpg)
 
@@ -66,7 +61,7 @@ We are going to see our newly created stack and we can also click and explore al
 
 ## 3. Terraform Plan
 
-Let's first run a Terraform plan via Resource manager first.
+Vamos primero primero a ejecutar un Terraform plan via Resource manager.
 
    ```powershell
  oci resource-manager job create-plan-job --stack-id "ocid1.ormstack.oc1.phx.aaaaaaaa35d5mvdzdlmdabjevxuk3sb6vh3weld4nq6jcldnv5fw5fdhnvqq"
@@ -74,50 +69,53 @@ Let's first run a Terraform plan via Resource manager first.
 
    ![plan output](/img/resourcemanager/terminal_plan_stack_output.jpg)
 
-As we can see in the image above, we see that the plan was accepted, what happens now is that in Resource Manager a "Terraform plan" is being executed.
+Como podemos observar en la imagen de arriba, vemos que el plan fue aceptado, lo que ocurre ahora es que en Resource Manager se esta ejecutando un "Terraform plan".
 
 ![plan UI out](/img/resourcemanager/plan_stack_output.jpg)
 
-In the output in terminal, we must write down the "id" and then run our Terraform apply.
+En el output en terminal, debemos anotar el "id" para luego ejecutar nuestro Terraform apply.
 
 ## 4. Terraform apply
 
-We are going to execute terraform apply using the previous plan terraform.
+Vamos a ejecturar terraform apply haciendo uso del terraform plan previo.
 
    ```shell
 oci resource-manager job create-apply-job --stack-id "ocid1.ormstack.oc1.phx.aaaaaaaa35d5mvdzdlmdabjevxuk3sb6vh3weld4nq6jcldnv5fw5fdhnvqq" --execution-plan-strategy "FROM_PLAN_JOB_ID" --execution-plan-job-id "ocid1.ormjob.oc1.phx.aaaaaaaa27tt62iwp3gixrbp2cekhzqwku62xt5w5qmlmhk6vrozlwsvvzoa"
    ```
-
-The "execution plan strategy" determines whether to use a previous Job plan or whether to make a plan first and then apply.
+El "execution plan strategy" determina si se usara un plan Job previo o si primero hará plan y luego apply.
 
 ![apply output](/img/resourcemanager/terminal_appy_stack_output.jpg)
 
-In console while it is pending we will see this.
+En consola mientras esta en pending veremos esto.
 
 ![pending ui](/img/resourcemanager/apply_stack_output_pending.jpg)
 
-We have to wait a bit while creating our Network, Kubernetes Cluster and its nodes so...just chill!!!
+Nos toca esperar un poco mientras se crear nuestra Red, Cluster de Kubernetes y su nodo!!!... just chill!
 
-Then we go back to the console and we will see the result of our apply. We already have our cluster ready!
+Luego vamos de nuevo a la consola y veremos el resultado de nuestro apply. Ya tenemos nuestro cluster listo!
 
 ![terraform output](/img/resourcemanager/apply_stack_output_success.jpg)
 
-## 5. Update Stack
+## 5. Actualizar el Stack
 
 Once our cluster is ready and you can take a look at Menu --> Developer Services --> Container Cluster (OKE), lets now say that we need to scale our cluster as right now it only has only one worker node. For this go back to the variable.tf file in the demo source code and modify the variable "nodes_per_net" and set the value to 2.
 
+Una vez el cluster kubernetes esta listo; podemos verlo si vamos al Menu --> Developer Services --> Container Cluster (OKE). Digamos que necesitamos escalar nuestro cluster y añadir un noda adicional ya que el que creamos solo tiene un nodo worker. Para esto nos vamos al archivo variables.tf que se encuentra dentro del directorio del código terraform y en la variables "nodes_per_net" cambiamos el valor a 2.
+
 ![variablestf node size](/img/resourcemanager/var_nodes.jpg)
 
-- Zip compress the stack files again ```zip stack.zip *.tf```
+- Comprimimos los archivos nuevamente ```zip stack.zip *.tf```
 
-- Update with the following command.
+- Hacemos la actualización con el sieguiente comando.
 
   ```shell
   oci resource-manager stack update --config-source stack.zip --stack-id $stackid
   ```
 
-- This time we will directly send a Terraform apply job.
+- En esta oportunidad haremos un "Terraform apply" directamente.
 
   ```shell
   oci resource-manager  job create-apply-job --stack-id $stackid --execution-plan-strategy "AUTO_APPROVED"
   ```
+
+Nuestro cluster se va actualizar y pasará a tener dos nodos.
