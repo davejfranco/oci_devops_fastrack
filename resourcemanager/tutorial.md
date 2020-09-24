@@ -22,7 +22,7 @@ Resource Manager tasks flow.
 
 ## 1. Editar nuestro terraform template
 
-Ve al directorio oci-devopsft-src. Una ve dentro localizamos el archivo variables.tf en donde vamos a reemplazar algunas variables con respecto a nuestro tenant.
+Ve al directorio oci-devopsft-src/terraform. Una ve dentro localizamos el archivo variables.tf en donde vamos a reemplazar algunas variables con respecto a nuestro tenant.
 
 ![vtf](/img/iac/variablestf.jpg)
 
