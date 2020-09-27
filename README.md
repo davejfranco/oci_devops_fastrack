@@ -1,30 +1,32 @@
 # DevOps Day Fasttrack
 
-Este proyecto tiene como propósito servir de workshop para el aprendizaje de conceptos básicos de la práctica de DevOps usando herramientas opensource sobre Oracle Cloud Infrastructure.
+Este proyecto busca servir como material workshop para aprender conceptos básicos de las prácticas de DevOps usando herramientas opensource en Oracle Cloud.
 
 ## Agenda
 
-En cada directorio de este proyecto existe un tutorial y a continuación les describo la secuencia de como seguirlo.
+Este material cubre los siguientes topicos:
 
-### 1. Setup
+- Cloud Shell and Oracle Command Line Tool (oci-cli).
+- Oracle Resource Manager (Terraform deployment plattform).
+- Oracle Kubernetes Engine (OKE).
 
-El primer paso es movernos al directorio "setup". Veremos dos archivos ordenados por número en el primero veremos en OCI como crear una red básica, luego explicamos como crear una VM que será de donde ejecutaremos el workshop y donde instalaremos todos los requerimientos necesarios como git, docker y kubectl con un script que esta incluido.
+### Prerequisitos
 
-### 2. OCI command line tool
+Para seguir este workshop lo primero necesario es tener una cuenta de OCI (Oracle Cloud Infrastructure), si no tienes una puedes visitar este [link](https://www.oracle.com/cloud/free/) y sigue los pasos. Una vez tengas la cuenta ve a la [consola](https://console.us-ashburn-1.oraclecloud.com/) deberás colocar el nombre del tenant el cual asignaste al momento de crear la cuenta seguido del usuario y password.
 
-Una vez finalizado el setup, descargamos el proyecto en nuestra nueva VM y seguidamente nos vamos al directorio "ocicli" y acá también hay dos arhivos ordenados númericamente donde veremos los pasos para instalar y configuar oci-cli tool, una herramienta de linea de comando para interactuar con los recursos de OCI y donde también veremos como a través de esta herramienta podemos crear o destruir recursos de manera rápida e instantánea.
+### 1. [OCI command line tool](/ocicli/tutorial.md)
 
-### 3. Infraestructura como código
+La "forma de DevOps" de hacer cosas es usar la terminal, en este sentido Oracle Cloud tiene dos herramientas sorprendentes; el primero es el cloud shell que le permite tener un shell en el navegador con algunas herramientas útiles ya instaladas para trabajar, el segundo es la herramienta de línea de comando de oci (oci-cli) que le permite realizar operaciones a través del terminal. En este laboratio trabajaremos con ambos para familiarizarnos con OCI usando el terminal.
 
- Una vez finalizado nos vamos hacia el directorio "resourcemanager" en donde usaremos oci-cli para invocar un servicio  de OCI llamado Resource Manager que sirve como lugar centralizado para la ejecución de Terraform donde enseñaremos como desplegar infraestructura más compleja incluyendo Oracle Kubernetes Engine.
+### 3.  [Infraestructura como código](/resourcemanager/tutorial.md)
 
-### 4. Oracle Kubernetes Engine (OKE)
+DevOps se apoya en la automatización, incluyendo la creación de infraestructura. Hay muchas herramientas que pueden ayudarnos en esta tarea, pero Terraform es la herramienta de Infraestructura como código más conocida en el mundo y en conjunto con Oracle Resource Manger podemos tener una plataforma centralizada para implementar y monitorear nuestros cambios en el ciclo de vida de la Infraestructura.
 
-Finalmente nos vamos hacia el directorio "oke". Acá veremos como generar nuestro kubeconfig para conectarnos al cluster creado en el tutorial pasado, explicaremos como conectarnos al servicios "Oracle Container Registry", subiremos imagenes como prueba y finalmente desplegaremos un microservicio basado en Java.
+En este laboratorio modificaremos un código terraform y lo desplegaremos usando Resource Manager a través del oci-cli.
 
-### Bonus
+### 4. [Oracle Kubernetes Engine (OKE)](/oke/tutorial.md)
 
-Existe un directorio iac que contiene como sub directorio "terraform" donde se encuentra los archivos TF que se usan para el tutorial de infraestructura como código y otro archivo "packer" donde hay un ejemplo de como generar Vm templates a través de código usando la solución de Hashicorp llamada "Packer"
+Finalmente en este último laboratior veremos como generar el kubeconfig de nuestro recién creado cluster de Kubernetes, nos conectaremos al Oracle Container Registry y finalmente desplegaremos una aplicación.
 
 ![keepcalm](/img/keep-calms-and-do-devops.png)
 

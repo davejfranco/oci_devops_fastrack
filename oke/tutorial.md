@@ -130,4 +130,3 @@ y si queremos ver nuestro servicio expuesto para ver la IP de nuestro LoadBalanc
 ```shell
 kubectl get services
 ```
-
