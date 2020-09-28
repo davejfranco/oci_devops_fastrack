@@ -7,7 +7,7 @@ El cli es una herramienta de linea de comando que provee las mismas funcionalida
 Lo primero que debemos hacer es loggearnos via ssh en la VM que creamos en la sección de "setup". Una vez dentro del terminal, ejecutamos el siguiente script.
 
 ```shell
-bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
+sudo yum install python36-oci-cli
 ```
 
 ## Paso 2. Setup Inicial de oci-cli 
@@ -37,7 +37,7 @@ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scrip
    - Nos preguntara si queremos generar nuevo par de llaves RSA y debemos decir que si con la letra Y.
    - Nos indicara el directorio default, nombre de las llaves y frase; a todo esto le podemos dar enter para tomar los valores default
 
-  ### Listo Tenemos nuestro confi generado.
+### Listo Tenemos nuestro confi generado.
 
 <img src="/img/ocicli/oci_setup_config_qa.jpg" alt="seup qa" style="zoom:50%;" />
 
@@ -60,7 +60,8 @@ bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scrip
 
    ![output test](/img/ocicli/oci_setup_test.jpg)
 
-   ### y si es asi pues... we are ready to rock and roll!!!
+### y si es asi pues... we are ready to rock and roll!!!
 
+   
    
 

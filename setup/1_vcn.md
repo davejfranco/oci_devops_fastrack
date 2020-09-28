@@ -36,4 +36,3 @@ Hacemos click en "Next", podremos ver un review de los recursos que sera creados
 ![create](/img/setup/vcn_review.jpg)
 
 Y listo!!
-

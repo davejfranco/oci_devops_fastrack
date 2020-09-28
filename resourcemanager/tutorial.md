@@ -1,4 +1,4 @@
-# Desplegando Infraestructura como código - Oracle Resource Manager
+# Desplegando infraestructura como código - Oracle Resource Manager
 
 Cuando deseamos desplegar infraestructuras más complejas, que poseen muchos recursos que dependen entre si, es necesario hacer uso de una herramienta mucho más robusta. Para este tutorial haremos uso de Terraform que nos permite precisamente esto mediante el uso de una lenguaje sencillo conocido como HCL (Hashicorp Configuration Language) para describir nuestra arquitectura.
 
@@ -6,29 +6,29 @@ Cuando deseamos desplegar infraestructuras más complejas, que poseen muchos rec
 
 A continuación usaremos Oci-cli, Terraform y Resource Manager para desplegar una VCN nueva y un cluster de Kubernetes para mas tarde podamos desplegar microservicios en Docker.
 
+## Prerequisitos
 
+- oci-cli
+- Descarga el código con el siguiente comando.
+
+```
+git clone https://github.com/davejfranco/oci-devopsft-src.git
+```
 ## Resource Manager Workflow
 
-Cuando estamos usando Resource Manager el flujo de tareas que podemos hacer esta representado en la siguiente imagen.
+Resource Manager tasks flow.
 
 ![rm](/img/resourcemanager/resource_manager_workflow.jpg)
 
-## Paso 1. Ajustar nuestro Terraform
+## 1. Editar nuestro terraform template
 
-Nos vamos a dirigir al directorio donde se encuentra nuestros archivos de terraform ubicados en el directorio iac/terraform dentro del proyecto. Allí vamos a ubicar el archivo variables.tf donde remplazaremos las variables acorde a nuestro tenant.
+Ve al directorio oci-devopsft-src/terraform. Una ve dentro localizamos el archivo variables.tf en donde vamos a reemplazar algunas variables con respecto a nuestro tenant.
 
 ![vtf](/img/iac/variablestf.jpg)
 
 - Lo primero es llenar el espacio entre comillas correspondiente a la region; si estas en Ashburn el valor es "us-ashburn-1".
 
 - Luego vamos a reemplazar la variable "compartment_id" donde tenemos que llenarlo con el OCID del compartment donde estamos desplegando nuestro recursos. Recuerda que en la consola si nos vamos al Menú --> Identity --> Comparments veremos la lista de compartments y encontraremos el OCID buscado.
-
-- Por último tal y como hicimos en el tutorial de oci-cli necesitas el OCID de la imagen a utilizar para los nodos workers de nuestro cluster k8s. Recuerda que puedes visitar [Linux 7 OCID](https://docs.cloud.oracle.com/en-us/iaas/images/oraclelinux-7x/) y obtener este valir según la región donde estas creando los recursos; usa este valor para reemplazar la variable "node_image_id".
-
-  Nota: 
-
-  - Si estas en us-ashburn-1 el OCID que debes usar en la variables "node_image_id" es ocid1.image.oc1.iad.aaaaaaaa6tp7lhyrcokdtf7vrbmxyp2pctgg4uxvt4jz4vc47qoc2ec4anha
-  - Si estas en us-phoenix-1 el OCID que debes usar en la variables "node_image_id" es ocid1.image.oc1.phx.aaaaaaaa6hooptnlbfwr5lwemqjbu3uqidntrlhnt45yihfj222zahe7p3wq
 
 ## Pasos 2. Crear el stack
 
@@ -37,7 +37,6 @@ Ahora que modificamos nuestro terraform vamos a comprimir los archivos terraform
 ```shell
 zip stack.zip *.tf
 ```
-
 Copiamos el compartment id en donde se creará el stack
 
 ```
@@ -48,12 +47,11 @@ Ahora vamos a crear el stack, como puedes ver más abajo la variable $cid repres
 ```shell
 oci resource-manager stack create --compartment-id $cid --config-source stack.zip --display-name "Demo Stack" --terraform-version "0.12.x"
 ```
-
 Ejecutado el comando debemos tener el siguiente output en nuestra terminal, tomemos nota del "id"; este es nuestro stack-id para futuras operaciones.
 
 ![stack create out](/img/resourcemanager/create_stack_output.jpg)
 
-### Si nos vamos a la consola, veremos el stack creado via oci-cli 
+### Si nos vamos a la consola, veremos el stack creado via oci-cli
 
 Vamos a ver nuestro recién creado stack y además podemos hacer clic y explorar todas las opciones que podemos tomar en Resource Manager. La idea es que podamos desplegar nuestras receta terraform tal y como lo hariamos desde nuestra máquina pero desde una lugar centralizado sin la necesidad de tener un servidor de CI/CD para esto.
 
@@ -61,7 +59,7 @@ Vamos a ver nuestro recién creado stack y además podemos hacer clic y explorar
 
 ![stack console](/img/resourcemanager/stack_created_dashboard.jpg)
 
-## Pasos 3. Terraform Plan
+## 3. Terraform Plan
 
 Vamos primero primero a ejecutar un Terraform plan via Resource manager.
 
@@ -77,14 +75,14 @@ Como podemos observar en la imagen de arriba, vemos que el plan fue aceptado, lo
 
 En el output en terminal, debemos anotar el "id" para luego ejecutar nuestro Terraform apply.
 
-## Pasos 4. Terraform apply
+## 4. Terraform apply
+
 Vamos a ejecturar terraform apply haciendo uso del terraform plan previo.
 
    ```shell
 oci resource-manager job create-apply-job --stack-id "ocid1.ormstack.oc1.phx.aaaaaaaa35d5mvdzdlmdabjevxuk3sb6vh3weld4nq6jcldnv5fw5fdhnvqq" --execution-plan-strategy "FROM_PLAN_JOB_ID" --execution-plan-job-id "ocid1.ormjob.oc1.phx.aaaaaaaa27tt62iwp3gixrbp2cekhzqwku62xt5w5qmlmhk6vrozlwsvvzoa"
    ```
-
- El "execution plan strategy" determina si se usara un plan Job previo o si primero hará plan y luego apply.
+El "execution plan strategy" determina si se usara un plan Job previo o si primero hará plan y luego apply.
 
 ![apply output](/img/resourcemanager/terminal_appy_stack_output.jpg)
 
@@ -98,20 +96,24 @@ Luego vamos de nuevo a la consola y veremos el resultado de nuestro apply. Ya te
 
 ![terraform output](/img/resourcemanager/apply_stack_output_success.jpg)
 
-## Paso 5. Update Stack (Opcional)
+## 5. Actualizar el Stack
 
-Si nos hemos equivocado podemos actualizar el stack de la siguiente forma.
+Una vez el cluster kubernetes esta listo; podemos verlo si vamos al Menu --> Developer Services --> Container Cluster (OKE). Digamos que necesitamos escalar nuestro cluster y añadir un noda adicional ya que el que creamos solo tiene un nodo worker. Para esto nos vamos al archivo variables.tf que se encuentra dentro del directorio del código terraform y en la variables "nodes_per_net" cambiamos el valor a 2.
 
-- Hacemos los cambios necesarios para arreglar el problema.
+![variablestf node size](/img/resourcemanager/var_nodes.jpg)
 
-- Comprimimos en zip los archivos del stack ```zip stack.zip *.tf```
+- Comprimimos los archivos nuevamente ```zip stack.zip *.tf```
 
-- Hacemos el update con el siguiente comando
+- Hacemos la actualización con el sieguiente comando.
 
   ```shell
   oci resource-manager stack update --config-source stack.zip --stack-id $stackid
   ```
 
-- Nuevamente tendremos que ejecutar los pasos de Terraform Plan y Terraform apply.
+- En esta oportunidad haremos un "Terraform apply" directamente.
 
-  
+  ```shell
+  oci resource-manager  job create-apply-job --stack-id $stackid --execution-plan-strategy "AUTO_APPROVED"
+  ```
+
+Nuestro cluster se va actualizar y pasará a tener dos nodos.

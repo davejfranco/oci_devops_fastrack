@@ -16,15 +16,15 @@ usermod -aG docker opc
 
 #Install terraform
 echo "Install Terraform"
-wget https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip
-unzip terraform_0.12.20_linux_amd64.zip
+wget https://releases.hashicorp.com/terraform/0.13.3/terraform_0.13.3_linux_amd64.zip
+unzip terraform_0.13.3_linux_amd64.zip
 mv terraform /usr/local/bin
 
 #Install packer
-echo "Install Packer"
-wget https://releases.hashicorp.com/packer/1.5.4/packer_1.5.4_linux_amd64.zip
-unzip packer_1.5.4_linux_amd64.zip 
-mv packer /usr/local/bin
+#echo "Install Packer"
+#wget https://releases.hashicorp.com/packer/1.5.4/packer_1.5.4_linux_amd64.zip
+#unzip packer_1.5.4_linux_amd64.zip 
+#mv packer /usr/local/bin
 
 #Install kubectl
 echo "Install kubectl"
